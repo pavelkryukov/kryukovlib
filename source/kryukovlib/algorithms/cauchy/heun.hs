@@ -1,11 +1,11 @@
 {-
- - algorithms/cauchy/eulercorr.hs
+ - algorithms/cauchy/heun.hs
  -
  - Kryukov computational mathematics library (KryukovLib)
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
-module KryukovLib.Algorithms.Cauchy.EulerCorr
-    (eulercorr)
+module KryukovLib.Algorithms.Cauchy.Heun
+    (heun)
 where
 
 import KryukovLib.Generic.ListFunctions (diffgrid)
@@ -17,9 +17,9 @@ import KryukovLib.Types.Table (zipTable)
 
 import KryukovLib.Algorithms.Cauchy
 
--- Euler method of solving Cauchy's problem (with correction)
-eulercorr :: (CrossMult t u u, LAO u, Fractional t) => CauchySolver t u
-eulercorr func nodes base = zipTable nodes values'
+-- Heun method of solving Cauchy's problem (with correction)
+heun :: (CrossMult t u u, LAO u, Fractional t) => CauchySolver t u
+heun func nodes base = zipTable nodes values'
     where
         funcvals   = zipWith func nodes values
         funcvals2  = zipWith func nodes values'

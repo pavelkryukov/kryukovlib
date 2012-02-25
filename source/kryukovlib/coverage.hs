@@ -49,7 +49,7 @@ import KryukovLib.Algorithms.MatrixInv.SLAEInverse
 
 import KryukovLib.Algorithms.Cauchy
 import KryukovLib.Algorithms.Cauchy.Euler
-import KryukovLib.Algorithms.Cauchy.EulerCorr
+import KryukovLib.Algorithms.Cauchy.Heun
 import KryukovLib.Algorithms.Cauchy.RungeKutta4
 
 import KryukovLib.Solutions
@@ -192,7 +192,7 @@ allTests =
     --
     splitter >>
     putStrLn "cauchy" >>
-    (ode euler) >> (ode eulercorr) >> (ode rungekutta4) >>
+    (ode euler) >> (ode heun) >> (ode rungekutta4) >>
     --
     splitter >>
     putStrLn "supermatrix" >>
