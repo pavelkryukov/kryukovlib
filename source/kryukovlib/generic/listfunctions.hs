@@ -5,7 +5,7 @@
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
 module KryukovLib.Generic.ListFunctions
-    (merge, infstep, hgrid, chebPolyZeroes,
+    (merge, hgrid, chebPolyZeroes,
      evenl, oddl, diffgrid, shift, midgrid, superzip)
 where
 
@@ -25,10 +25,6 @@ oddl :: [t] -> [t]
 oddl (_:xs) = evenl xs
 oddl [] = []
 
--- Infinite even list with specified start and step value
-infstep :: (Num t) => t -> t -> [t]
-infstep a h0 = a : (infstep (a + h0) h0)
-
 -- Take differences between list elements
 diffgrid :: (Num t) => [t] -> [t]
 diffgrid a = zipWith (-) (tail a) a
@@ -39,7 +35,7 @@ hgrid (a,b) n =
     let
         h = ((b - a)/(fromIntegral (n-1)))
     in
-        take n (infstep a h)
+        take n (iterate (+ h) a)
 
 -- Shift of list with copying of first element
 shift :: [t] -> [t]

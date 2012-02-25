@@ -10,7 +10,7 @@ module KryukovLib.Algorithms.Derivative.Symmetric
 where
 
 import KryukovLib.Generic.Debug (notImpl)
-import KryukovLib.Generic.ListFunctions (infstep, merge)
+import KryukovLib.Generic.ListFunctions (merge)
 
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.CrossMult
@@ -25,9 +25,9 @@ derivS n h =
     \func ->
     \x ->
         (recip h) \*\
-        (laosum::[f]->f) (zipWith (\*\) (coeffs n) (map func (gridS x h)))
+        (laosum::[f]->f) (zipWith (\*\) (coeffs n) (map func (gridS x)))
         where
-            gridS a h0 = merge (infstep (a + h0) h0) (infstep (a - h0) (-h0))
+            gridS a = merge (iterate (+ h) (a + h)) (iterate (+ (-h)) (a - h))
             coeffs :: Int -> [t]
             coeffs 2 = [-1/2, 1/2]
             coeffs 4 = [4/3, -4/3, -1/12, 1/12]

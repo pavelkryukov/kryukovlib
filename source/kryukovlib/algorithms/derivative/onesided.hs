@@ -10,7 +10,6 @@ module KryukovLib.Algorithms.Derivative.OneSided
 where
 
 import KryukovLib.Generic.Debug (notImpl)
-import KryukovLib.Generic.ListFunctions (infstep)
 
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.CrossMult
@@ -25,7 +24,7 @@ deriv n h =
     \func ->
     \x ->
         (recip h) \*\
-        (laosum::[f]->f) (zipWith (\*\) (coeffs n) (map func (infstep x h)))
+        (laosum::[f]->f) (zipWith (\*\) (coeffs n) (map func (iterate (+ h) x)))
         where
             coeffs :: Int -> [t]
             coeffs 1 = [-1, 1]
