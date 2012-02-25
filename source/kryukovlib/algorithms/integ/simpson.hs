@@ -19,14 +19,15 @@ import KryukovLib.Types.Table (unTable, qual)
 
 import KryukovLib.Algorithms.Integ
 
--- Intergal of table function
+-- Simpson integral method
+-- Table function should have odd number of points
 simpson :: forall t f.
     (CrossMult t f f, Fractional t, LAO f) => Integ t f
-simpson func 
-    | (((mod) (qual func) 2) == 1) = error "Table should have 2*N+1 points"
+simpson fc
+    | (((mod) (qual fc) 2) == 1) = error "Table should have odd number of points"
     | otherwise =
         let
-            (nodes, values') = unTable func
+            (nodes, values') = unTable fc
             diffnodes = diffgrid $ evenl nodes
             values = 
                 superzip (<+>) [

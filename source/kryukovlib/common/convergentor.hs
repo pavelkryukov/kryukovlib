@@ -30,7 +30,6 @@ convergentor' n func val
     | n > 100000 = Nothing
     | (norm2 (val <-> func val)) < q = Just val
     | otherwise = convergentor' (n + 1) func (func val)
-    
 
 -- Solution of SLAE using iteration form
 -- x' = Bx + f

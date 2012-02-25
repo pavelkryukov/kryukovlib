@@ -27,6 +27,6 @@ slaeInverse :: (LAO (Vector s t), Semigroup t) =>
     (SLAESolver s t) -> (MatrixInvertor s s t)
 slaeInverse solver =
     \a ->
-        case mapMaybe (solver . (SLAE a)) (basis) of
+        case mapMaybe (solver . (SLAE a)) basis of
             [] -> Nothing
             f -> Just $ trans (Matrix f)

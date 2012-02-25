@@ -12,15 +12,21 @@ where
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Number
 
+-- Class of types with multiplication and identity element
 class (LAO a) => Semigroup a where
+    -- Identity element
     iden :: a
+    -- Multiplication
     (<*>) :: a -> a -> a
+    -- Fibonacci range
     fibonacci :: [a]
     fibonacci = zero : iden : zipWith (<+>) fibonacci (tail fibonacci)
+    -- Kroneker symbol
     kroneker :: (Eq t) => t -> t -> a
     kroneker m n
         | m == n    = iden
         | otherwise = zero
+    -- Ackermann function
     ackermann :: (Eq a) => a -> a -> a
     ackermann m n = 
         case (m == zero, n == zero) of

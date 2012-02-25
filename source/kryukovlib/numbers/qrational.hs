@@ -12,7 +12,7 @@ import KryukovLib.Classes.Number
 
 -- QRational type is wrapper of Rational type with
 -- support of functions (sin, cos, exp, log etc.)
--- and Numbers class
+-- and Number class
 data QRational = QRational Rational deriving (Read, Eq, Ord)
 
 -- Wrapper for function of one parameter

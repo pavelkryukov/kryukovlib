@@ -13,16 +13,20 @@ import KryukovLib.Classes.Number
 
 type Norm a = a -> Double
 
--- Class for two-dimensiable object (vector, matrix)
--- Dim and Zero are needed, others are provided.
+-- Class for Linear Algebra Object
+-- with defined +, -, 0 and norms
 class LAO a where
+    -- Zero element
     zero :: a
+    -- Norms
     norm1 :: Norm a
     norm2 :: Norm a
     euclid :: Norm a    
     norm3 :: Norm a
+    -- Linear operations
     (<+>) :: a -> a -> a
     (<->) :: a -> a -> a
+    -- Linear list sum
     laosum :: [a] -> a
     laosum = foldl (<+>) zero
     norm3 = sqrt . euclid

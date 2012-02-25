@@ -17,7 +17,7 @@ import KryukovLib.Common.FinDiff (finDiff)
 
 import KryukovLib.Algorithms.Interpolation
 
--- Interpolation function in Newton's form
+-- Interpolation polynom in Newton's form
 newton :: (CrossMult t f f, Fractional t, Eq t, LAO f) => Interpolation t f
 newton f =
     \x ->

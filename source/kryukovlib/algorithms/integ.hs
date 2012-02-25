@@ -10,5 +10,7 @@ where
 
 import KryukovLib.Types.Table (Table)
 
+-- Integ operator counts integral over table function
+-- Table function should be sorted
 type Integ t f = (Table t f) -> f
 

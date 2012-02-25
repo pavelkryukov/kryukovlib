@@ -15,7 +15,11 @@ import KryukovLib.Classes.Semigroup
 -- Complex number type
 -- First value is Re, second is Im
 data Complex t    = Complex t t
+
+-- Quaternion synonym for Complex on Complex
 type Quaternion t = Complex (Complex t)
+
+-- Octonion synonym for Complex on Complex
 type Octonion t   = Complex (Quaternion t)
 
 -- Imaginary unit
@@ -26,11 +30,9 @@ i = Complex zero iden
 arg :: (Floating t) => (Complex t) -> t
 arg (Complex x y) = atan (y / x)
 
--- Eq
 instance (Eq t) => Eq (Complex t) where
     Complex x1 y1 == Complex x2 y2 = (x1 == x2) && (y1 == y2)
 
--- Num
 instance (Num t) => Num (Complex t) where
     Complex a1 b1 + Complex a2 b2 = Complex (a1 + a2) (b1 + b2)
     negate (Complex x y) = Complex (negate x) (negate y)

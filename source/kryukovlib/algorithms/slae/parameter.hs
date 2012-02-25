@@ -20,7 +20,6 @@ import KryukovLib.Common.Convergentor (matrixiterator)
 import KryukovLib.Algorithms.SLAE
 
 -- One-parameter iteration method
--- See SLAE.iteration for more information
 -- x' = (E - tA)x + tf
 parameter :: 
     (Semigroup t, LAO (Vector s t), LAO (SqrMatrix s t)) =>

@@ -99,14 +99,14 @@ derivateS :: IO ()
 derivateS =
      print $
         sum [
-                ((hderiv 2 (derivS 2 0.00001) sin)::T->T) (fromInteger n) +
+                ((hderiv (derivS 2 0.00001) 2 sin)::T->T) (fromInteger n) +
                 sin (fromInteger n)
             | n <- [0..100]]
 
 derivate :: IO ()
 derivate =
      print $
-        ((hderiv 2 (deriv 1 0.00001) sin)::T->T) 0 + sin 0
+        ((hderiv (deriv 1 0.00001) 2 sin)::T->T) 0 + sin 0
 
 derivate2 :: IO ()
 derivate2 =

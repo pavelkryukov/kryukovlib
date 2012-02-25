@@ -18,7 +18,7 @@ import KryukovLib.Types.Table (unTable)
 
 import KryukovLib.Algorithms.Integ
 
--- Intergal of table function
+-- Trapecies integral method
 trapInteg :: forall t f.
     (CrossMult t f f, Fractional t, LAO f) => Integ t f
 trapInteg f =

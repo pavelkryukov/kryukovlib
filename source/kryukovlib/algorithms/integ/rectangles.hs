@@ -17,10 +17,11 @@ import KryukovLib.Types.Table (unTable, qual)
 
 import KryukovLib.Algorithms.Integ
 
--- Intergal of table function
+-- Rectangles integral method
+-- Table function should have odd number of points
 rectInteg :: (CrossMult t f f, Fractional t, LAO f) => Integ t f
 rectInteg f
-    | (((mod) (qual f) 2) == 1) = error "Table should have 2*N+1 points"
+    | (((mod) (qual f) 2) == 1) = error "Table should have odd number of points"
     | otherwise =
         let
             (nodes, values') = unTable f

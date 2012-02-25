@@ -17,6 +17,7 @@ import KryukovLib.Types.Table (zipTable)
 
 import KryukovLib.Algorithms.Cauchy
 
+-- Euler method of solving Cauchy's problem (with correction)
 eulercorr :: (CrossMult t u u, LAO u, Fractional t) => CauchySolver t u
 eulercorr func nodes base = zipTable nodes values'
     where

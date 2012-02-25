@@ -18,6 +18,7 @@ import KryukovLib.Types.Table (zipTable)
 
 import KryukovLib.Algorithms.Cauchy
 
+-- Common fourth-order Runge–Kutta method for solving Cauchy's problem
 rungekutta4 :: forall t u.
     (CrossMult t u u, LAO u, Fractional t) => CauchySolver t u
 rungekutta4 func nodes base = zipTable nodes values

@@ -15,16 +15,18 @@ import KryukovLib.Classes.CrossMult
 
 import KryukovLib.Types.Size
 
+-- s-dimension Vector type with support of LAO and CrossMult operations
 data Vector s t = Vector [t] deriving (Eq, Read)
 
 -- Printer
 instance (Show t) => Show (Vector s t) where
     show (Vector v) = concat [show l ++ "\n" | l <- v]
 
--- Mapping over Vector
+-- Map over Vector with return of list
 mapV :: (t -> b) -> Vector s t -> [b]
 mapV f = map f . vtl
 
+-- Map over Vector with return of Vector
 mapVV :: (t -> b) -> Vector s t -> Vector s b
 mapVV f = Vector . map f . vtl
 

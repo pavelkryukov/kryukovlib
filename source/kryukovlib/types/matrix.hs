@@ -21,8 +21,13 @@ import KryukovLib.Classes.CrossMult
 import KryukovLib.Types.Size
 import KryukovLib.Types.Vector
 
+-- Matrix s1 x s2 type with LAO, Semigroup and CrossMult operations
 data Matrix s1 s2 t = Matrix [Vector s2 t] deriving (Eq, Read)
+
+-- Square matrix synonym
 type SqrMatrix s t = Matrix s s t
+
+-- SLAE datatype
 data SLAE s t = SLAE (SqrMatrix s t) (Vector s t)
 
 -- Internal functions
@@ -72,7 +77,7 @@ instance forall t s1 s2.
     zero = Matrix $ zero : mtl (zero::(Matrix s1 s2 t))
     norm1 = norm2 . trans
     norm2 (Matrix m) = maximum $ map (norm2) m
---  euclid m = maximum (map (norm3) (eigenvalues (transMult m)))
+--  euclid m = maximum $ map norm3 (eigenvalues (transMult m))
     euclid = notImpl
     (Matrix a) <+> (Matrix b) = Matrix $ zipWith (<+>) a b
     (Matrix a) <-> (Matrix b) = Matrix $ zipWith (<->) a b

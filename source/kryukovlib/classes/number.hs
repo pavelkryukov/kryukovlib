@@ -10,21 +10,22 @@ where
 
 import GHC.Float (float2Double, double2Float)
 
--- Numbers class
+-- Number class
 -- When you convert number using function toPrecise, you can
 -- use most of the Algorithms of KryukovLib
 class (Num a) => Number a where
+    -- Converts Double to number
     toPrecise :: Double -> a    
+    -- Converts number to Double
     fromPrecise :: a -> Double
+    -- Converts (Double -> Double) function to (number -> number) function
     analytic :: (Double -> Double) -> (a -> a)
 
--- Instance for floating types
 instance Number Double where
     toPrecise = id
     analytic = id
     fromPrecise = id
-    
--- Instance for floating types
+
 instance Number Float where
     toPrecise = double2Float
     analytic f = double2Float . f . float2Double

@@ -5,7 +5,7 @@
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
 module KryukovLib.Generic.ListFunctions
-    (merge, change, infstep, hgrid, chebPolyZeroes,
+    (merge, infstep, hgrid, chebPolyZeroes,
      evenl, oddl, diffgrid, shift, midgrid, superzip)
 where
 
@@ -15,15 +15,12 @@ merge xs     []     = xs
 merge []     ys     = ys
 merge (x:xs) (y:ys) = x : y : merge xs ys
 
--- Change of n-th element of list
-change :: [t] -> Int -> t -> [t]
-change v 0 h = h:(tail v)
-change v n h = (head v):(change v (n-1) h)
-
+-- Even elements of list
 evenl :: [t] -> [t]
 evenl (x:xs) = x : (oddl xs)
 evenl [] = []
 
+-- Odd elements of list
 oddl :: [t] -> [t]
 oddl (_:xs) = evenl xs
 oddl [] = []
@@ -44,12 +41,15 @@ hgrid (a,b) n =
     in
         take n (infstep a h)
 
+-- Shift of list with copying of first element
 shift :: [t] -> [t]
 shift a = (head a) : a
 
+-- Returns lists of pair mediums of list elements
 midgrid :: (Fractional t) => [t] -> [t]
 midgrid a = map (/2) (zipWith (+) (tail a) a)
 
+-- Zips list of lists into list with selected function
 superzip :: (t -> t -> t) -> [[t]] -> [t]
 superzip _ []     = undefined
 superzip _ [a]    = a

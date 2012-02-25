@@ -17,7 +17,7 @@ import KryukovLib.Classes.CrossMult
 
 import KryukovLib.Algorithms.Derivative
 
--- Onesided derivation
+-- Onesided derivative
 deriv :: forall t f. 
     (CrossMult t f f, Fractional t, LAO f) =>
     Int -> t -> Derivate t f

@@ -8,7 +8,9 @@ module KryukovLib.Algorithms.Cauchy
     (CauchySolver)
 where
 
-import KryukovLib.Types.Table
+import KryukovLib.Types.Table (Table)
 
-type CauchySolver t u = 
-    (t -> u -> u) -> [t] -> u -> (Table t u)
+-- CauchySolver solves Cauchy's problem dU/dt = F(U,t)
+-- First argument is F function, second is grid
+-- and the third one is value of U in first point of grid
+type CauchySolver t u = (t -> u -> u) -> [t] -> u -> (Table t u)

@@ -39,6 +39,8 @@ systemToEquations (SLAE (Matrix m) v) =
             error "Size of matrix and vector are not the same"
 
 -- Gaussian elimination of system of equations
+-- Algorithm is based on following:
+-- http://luckytoilet.wordpress.com/2010/02/21/solving-systems-of-linear-equations-in-haskell/
 elimination :: (Fractional t, LAO t, Number t) => 
     [Equation t] -> Maybe [Equation t]
 elimination matrix =

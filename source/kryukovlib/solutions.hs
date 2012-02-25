@@ -20,15 +20,21 @@ import KryukovLib.Algorithms.Integ
 import KryukovLib.Algorithms.Interpolation
 import KryukovLib.Algorithms.MatrixInv
 
+-- Integral of analytic function
+-- First argument is for integral algorithm,
+-- second for interval, third is number of nodes
+-- and the fourth one is function
 integA  :: (Fractional t, LAO f) =>
     Integ t f -> (t,t) -> Int -> (t -> f) -> f
 integA integ interval quality function =
     integ (trace (hgrid interval quality) function)
 
--- hdiff allows to repeat operator n times
-hderiv :: Int -> (Derivate t f) -> (Derivate t f)
-hderiv 0 _ = \func -> func
-hderiv n d = (hderiv (n - 1) d) . d
+-- hderiv repeats deriving operator 
+-- First argument is deriving operator
+-- second is the order of deriving
+hderiv :: (Derivate t f) -> Int -> (Derivate t f)
+hderiv _ 0 = \func -> func
+hderiv d n = (hderiv d (n - 1)) . d
 
 --jacobian :: (Derivate t (Vector f)) ->
 --    ((Vector t) -> (Vector f)) -> ((Vector t) -> (Matrix f))
@@ -47,7 +53,8 @@ inverseA interpolation interval quality function =
         (inverseT (trace (hgrid interval quality) function))
 
 -- Counter of coniditional number of Matrix
--- using specified Norm function
+-- using Matrix invertion method (first arg)
+-- and specified Norm function (second arg)
 condNumber :: (MatrixInvertor s s t) ->
     (Norm (SqrMatrix s t)) -> (SqrMatrix s t -> Maybe (Double))
 condNumber inv norm =
