@@ -31,7 +31,7 @@ import KryukovLib.Algorithms.SLAE.Gauss
 import KryukovLib.Algorithms.SLAE.Parameter
 import KryukovLib.Algorithms.SLAE.Jacobi
 
---import KryukovLib.Algorithms.Derivative
+import KryukovLib.Algorithms.Derivative
 import KryukovLib.Algorithms.Derivative.Symmetric
 import KryukovLib.Algorithms.Derivative.OneSided
 
@@ -95,23 +95,10 @@ convergence =
 ----------------
 -- Derivation --
 ----------------
-derivateS :: IO ()
-derivateS =
+derivate :: Derivate T (Vector Two T) -> IO ()
+derivate alg =
      print $
-        sum [
-                ((hderiv (derivS 2 0.00001) 2 sin)::T->T) (fromInteger n) +
-                sin (fromInteger n)
-            | n <- [0..100]]
-
-derivate :: IO ()
-derivate =
-     print $
-        ((hderiv (deriv 1 0.00001) 2 sin)::T->T) 0 + sin 0
-
-derivate2 :: IO ()
-derivate2 =
-     print $
-        (((deriv 2 0.00001) twofunction) 1)
+        ((alg twofunction) 1)
 
 ----------
 -- SLAE --
@@ -189,7 +176,7 @@ allTests =
     --
     splitter >>
     putStrLn "derivates" >>
-    derivateS >> derivate2 >> derivate >>
+    (derivate (deriv 2 0.00001)) >> (derivate (derivS 2 0.00001)) >>
     --
     splitter >>
     putStrLn "slae" >>

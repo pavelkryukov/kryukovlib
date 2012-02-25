@@ -27,7 +27,7 @@ derivS n h =
         (recip h) \*\
         (laosum::[f]->f) (zipWith (\*\) (coeffs n) (map func (gridS x)))
         where
-            gridS a = merge (iterate (+ h) (a + h)) (iterate (+ (-h)) (a - h))
+            gridS a = merge (iterate (+ (-h)) (a - h)) (iterate (+ h) (a + h))
             coeffs :: Int -> [t]
             coeffs 2 = [-1/2, 1/2]
             coeffs 4 = [4/3, -4/3, -1/12, 1/12]
