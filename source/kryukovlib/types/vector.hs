@@ -4,19 +4,27 @@
  - Kryukov computational mathematics library (KryukovLib)
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
-{-# LANGUAGE ScopedTypeVariables, FlexibleInstances #-}
+{-# LANGUAGE
+    ScopedTypeVariables, 
+    FlexibleInstances, 
+    ExistentialQuantification #-}
 module KryukovLib.Types.Vector
     (Vector(..), mapV, mapVV, basis, definedBasis, vtl)
 where
+
+import KryukovLib.Generic.Peano
 
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Semigroup
 import KryukovLib.Classes.CrossMult
 
-import KryukovLib.Types.Size
 
 -- s-dimension Vector type with support of LAO and CrossMult operations
-data Vector s t = Vector [t] deriving (Eq, Read)
+data Vector s t = (Peano s) => Vector [t]
+
+instance (Eq t) => Eq (Vector s t) where
+    (==) (Vector v1) (Vector v2) = and (zipWith (==) v1 v2)
+    (/=) (Vector v1) (Vector v2) = or (zipWith (/=) v1 v2)
 
 -- Printer
 instance (Show t) => Show (Vector s t) where
@@ -27,11 +35,11 @@ mapV :: (t -> b) -> Vector s t -> [b]
 mapV f = map f . vtl
 
 -- Map over Vector with return of Vector
-mapVV :: (t -> b) -> Vector s t -> Vector s b
+mapVV :: (Peano s) => (t -> b) -> Vector s t -> Vector s b
 mapVV f = Vector . map f . vtl
 
 -- Canonical basis in n-dimensional space (columns of identity matrix)
-basis :: (LAO (Vector s t), Semigroup t) => [Vector s t]
+basis :: (Peano s, LAO (Vector s t), Semigroup t) => [Vector s t]
 basis = definedBasis $ mapVV (<+> iden) zero
 
 -- Canonical basis created from specified vector.
@@ -59,24 +67,24 @@ instance (Semigroup t)
     (\*\) (Vector a) (Vector b) = laosum $ zipWith (<*>) a b
 
 -- Multiplication to number
-instance (Semigroup t) =>
+instance (Peano s, Semigroup t) =>
         CrossMult t (Vector s t) (Vector s t) where
     a \*\ v = mapVV (a <*>) v
 
-instance (Semigroup t) =>
+instance (Peano s, Semigroup t) =>
         CrossMult (Vector s t) t (Vector s t) where
     v \*\ a = mapVV (<*> a) v
 
-instance (LAO t) => LAO (Vector Zero t) where
-    norm1 _ = 0
-    norm2 _ = 0
-    euclid _ = 0
-    zero = Vector []
-    (<+>) _ _ = Vector []
-    (<->) _ _ = Vector []
+instance (LAO t) => LAO (Vector One t) where
+    zero = Vector $ [zero]
+    norm1 = head . (mapV norm1)
+    norm2 =  head . (mapV norm2)
+    euclid = head . mapV euclid
+    (Vector a) <+> (Vector b) = Vector $ zipWith (<+>) a b
+    (Vector a) <-> (Vector b) = Vector $ zipWith (<->) a b
 
 instance forall t s.
-        (LAO (Vector s t), LAO t) => LAO (Vector (Succ s) t) where
+        (Peano s, LAO (Vector s t), LAO t) => LAO (Vector (Succ s) t) where
     zero = Vector $ zero : vtl (zero::Vector s t)
     norm1 = maximum . (mapV norm1)
     norm2 =  sum . (mapV norm2)

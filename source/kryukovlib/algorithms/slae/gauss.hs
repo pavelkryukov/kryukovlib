@@ -11,6 +11,8 @@ where
 import Data.List (elemIndex)
 import Data.Maybe (fromJust)
 
+import KryukovLib.Generic.Peano
+
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Number
 
@@ -25,7 +27,7 @@ import KryukovLib.Algorithms.SLAE
 type Equation t = [t]
 
 -- Converter of System type to list of Equations
-systemToEquations :: SLAE s t -> [Equation t]
+systemToEquations :: (Peano s) => SLAE s t -> [Equation t]
 systemToEquations (SLAE (Matrix m) v) =
     systemToEquations' m (vtl v)
     where
@@ -111,7 +113,7 @@ elimination matrix =
                 a ++ [init (init row) ++ [1, z / nz]]
 
 --Solve a matrix (must already be in REF form) by back substitution.
-substitute :: (Fractional t) => Maybe [Equation t] -> Maybe (Vector s t)
+substitute :: (Peano s, Fractional t) => Maybe [Equation t] -> Maybe (Vector s t)
 substitute Nothing       = Nothing
 substitute (Just matrix) =
     Just (Vector (foldr next [last (last matrix)] (init matrix)))
@@ -124,5 +126,5 @@ substitute (Just matrix) =
                     solution : found
 
 -- Exported function
-gauss :: (Fractional t, LAO t, Number t) => SLAESolver s t
+gauss :: (Peano s, Fractional t, LAO t, Number t) => SLAESolver s t
 gauss = substitute . elimination . systemToEquations

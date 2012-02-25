@@ -8,6 +8,8 @@ module KryukovLib.Algorithms.SLAE.Parameter
     (parameter)
 where
 
+import KryukovLib.Generic.Peano
+
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Semigroup
 import KryukovLib.Classes.CrossMult
@@ -22,7 +24,7 @@ import KryukovLib.Algorithms.SLAE
 -- One-parameter iteration method
 -- x' = (E - tA)x + tf
 parameter :: 
-    (Semigroup t, LAO (Vector s t), LAO (SqrMatrix s t)) =>
+    (Peano s, Semigroup t, LAO (Vector s t), LAO (SqrMatrix s t)) =>
         t -> SLAESolver s t
 parameter tau =
     \(SLAE a f) -> matrixiterator (iden <-> (tau \*\ a)) (tau \*\ f) zero

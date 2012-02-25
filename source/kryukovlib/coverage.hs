@@ -11,6 +11,7 @@ where
 import Data.Maybe (fromJust)
 
 import KryukovLib.Generic.ListFunctions (hgrid)
+import KryukovLib.Generic.Peano
 
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Semigroup
@@ -20,7 +21,6 @@ import KryukovLib.Numbers.DoubleD
 import KryukovLib.Types.Complex
 import KryukovLib.Types.Matrix
 import KryukovLib.Types.Vector
-import KryukovLib.Types.Size
 import KryukovLib.Types.Table
 
 import KryukovLib.Common.DiagonalSLAE (solve3)

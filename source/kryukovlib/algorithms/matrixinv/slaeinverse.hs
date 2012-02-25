@@ -10,6 +10,8 @@ where
 
 import Data.Maybe
 
+import KryukovLib.Generic.Peano
+
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Semigroup
 
@@ -23,7 +25,7 @@ import KryukovLib.Algorithms.MatrixInv
 -- Matrix invertor with using SLAESolver
 -- Counts every line of inverse matrix as solution of
 -- equation with basis column on the right
-slaeInverse :: (LAO (Vector s t), Semigroup t) =>
+slaeInverse :: (Peano s, LAO (Vector s t), Semigroup t) =>
     (SLAESolver s t) -> (MatrixInvertor s s t)
 slaeInverse solver =
     \a ->

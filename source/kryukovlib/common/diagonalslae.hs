@@ -8,10 +8,12 @@ module KryukovLib.Common.DiagonalSLAE
     (solve3)
 where
 
+import KryukovLib.Generic.Peano
+
 import KryukovLib.Types.Vector (Vector(..), vtl)
 
 -- Solver of 3-diagonal SLAE
-solve3 :: (Fractional t) =>
+solve3 :: (Peano s, Fractional t) =>
     Vector s t -> Vector s t -> Vector s t -> Vector s t -> Vector s t
 solve3 a b c f = Vector (solve3' (vtl a) (vtl b) (vtl c) (vtl f))
 

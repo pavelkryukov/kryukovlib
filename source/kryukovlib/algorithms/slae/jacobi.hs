@@ -8,6 +8,8 @@ module KryukovLib.Algorithms.SLAE.Jacobi
     (jacobi)
 where
 
+import KryukovLib.Generic.Peano
+
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Semigroup
 import KryukovLib.Classes.CrossMult
@@ -20,12 +22,16 @@ import KryukovLib.Common.Convergentor (matrixiterator)
 import KryukovLib.Algorithms.SLAE
 
 -- Inverse matrix of diagonal part of specified matrix
-adiag :: (Fractional t, Semigroup t) => SqrMatrix s t -> SqrMatrix s t
+adiag :: (Peano s, Fractional t, Semigroup t) => SqrMatrix s t -> SqrMatrix s t
 adiag = diag . (mapVV recip) . takeDiag
 
 -- Jacobi iteration method
 jacobi :: 
-    (Semigroup t, LAO (Vector s t), LAO (SqrMatrix s t), Fractional t) =>
+    (Peano s, 
+     Semigroup t,
+     LAO (Vector s t),
+     LAO (SqrMatrix s t),
+     Fractional t) =>
     SLAESolver s t
 jacobi =
     \(SLAE a f) ->
