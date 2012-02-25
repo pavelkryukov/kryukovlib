@@ -33,7 +33,7 @@ integA integ interval quality function =
 -- First argument is deriving operator
 -- second is the order of deriving
 hderiv :: (Derivate t f) -> Int -> (Derivate t f)
-hderiv _ 0 = \func -> func
+hderiv _ 0 = id
 hderiv d n = (hderiv d (n - 1)) . d
 
 --jacobian :: (Derivate t (Vector f)) ->
