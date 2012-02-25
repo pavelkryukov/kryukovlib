@@ -9,17 +9,17 @@ module KryukovLib.Generic.Peano
 where
 
 -- Type Peano Numbers for dimensions of Vectos and Matrices
-data Succ a = Succ a
 data One    = One
+data Succ a = Succ a
 
 class    Peano a
 instance Peano One
-instance (Peano a) => Peano (Succ a)
+instance Peano a => Peano (Succ a)
 
-type Two    = Succ One
-type Three  = Succ Two
-type Four   = Succ Three
-type Five   = Succ Four
-type Six    = Succ Five
-type Seven  = Succ Six
-type Eight  = Succ Seven
+type Two   = Succ One
+type Three = Succ Two
+type Four  = Succ Three
+type Five  = Succ Four
+type Six   = Succ Five
+type Seven = Succ Six
+type Eight = Succ Seven
