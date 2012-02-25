@@ -8,9 +8,9 @@ module Course9.Core
     (getSolution)
 where
 
-import KryukovLib.Classes.Precision
+import KryukovLib.Classes.Number
 
-import KryukovLib.Precision.DoubleD
+import KryukovLib.Numbers.DoubleD
 
 import KryukovLib.Algorithms.Interpolation
 import KryukovLib.Algorithms.Interpolation.Lagrange

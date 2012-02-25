@@ -8,7 +8,7 @@ module Course9.Analytic
     (analyse)
 where
 
-import KryukovLib.Precision.DoubleD
+import KryukovLib.Numbers.DoubleD
 
 import KryukovLib.Algorithms.Interpolation.Lagrange
 
