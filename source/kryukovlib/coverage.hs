@@ -37,7 +37,7 @@ import KryukovLib.Algorithms.Derivative.OneSided
 
 import KryukovLib.Algorithms.Integ
 import KryukovLib.Algorithms.Integ.Rectangles
-import KryukovLib.Algorithms.Integ.Trapecies
+import KryukovLib.Algorithms.Integ.Trapezoid
 import KryukovLib.Algorithms.Integ.Simpson
 
 import KryukovLib.Algorithms.Interpolation
@@ -164,7 +164,7 @@ allTests :: IO ()
 allTests =
     splitter >>
     putStrLn "integrals" >>
-    (integ rectInteg) >> (integ trapInteg) >> (integ simpson) >>
+    (integ rectInteg) >> (integ trapezoid) >> (integ simpson) >>
     --
     splitter >>
     putStrLn "interpolations" >>

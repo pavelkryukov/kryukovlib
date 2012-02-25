@@ -1,12 +1,12 @@
 {-
- - algorithms/integ/trapecies.hs
+ - algorithms/integ/trapezoid.hs
  -
  - Kryukov computational mathematics library (KryukovLib)
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
 {-# LANGUAGE ScopedTypeVariables #-}
-module KryukovLib.Algorithms.Integ.Trapecies
-    (trapInteg)
+module KryukovLib.Algorithms.Integ.Trapezoid
+    (trapezoid)
 where
 
 import KryukovLib.Generic.ListFunctions (diffgrid)
@@ -18,10 +18,10 @@ import KryukovLib.Types.Table (unTable)
 
 import KryukovLib.Algorithms.Integ
 
--- Trapecies integral method
-trapInteg :: forall t f.
+-- Trapezoid integral method
+trapezoid :: forall t f.
     (CrossMult t f f, Fractional t, LAO f) => Integ t f
-trapInteg f =
+trapezoid f =
     let
         (nodes, values') = unTable f
         diffnodes = diffgrid nodes
