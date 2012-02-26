@@ -30,6 +30,7 @@ import KryukovLib.Algorithms.SLAE
 import KryukovLib.Algorithms.SLAE.Gauss
 import KryukovLib.Algorithms.SLAE.Parameter
 import KryukovLib.Algorithms.SLAE.Jacobi
+import KryukovLib.Algorithms.SLAE.Seidel
 
 import KryukovLib.Algorithms.Derivative
 import KryukovLib.Algorithms.Derivative.Symmetric
@@ -180,7 +181,7 @@ allTests =
     --
     splitter >>
     putStrLn "slae" >>
-    (slae (parameter 0.5)) >> (slae gauss) >> (slae jacobi) >>
+    (slae (parameter 0.5)) >> (slae gauss) >> (slae jacobi) >> (slae seidel) >>
     --
     splitter >>
     putStrLn "slae3" >>

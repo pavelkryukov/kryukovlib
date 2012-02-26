@@ -10,7 +10,7 @@
     FlexibleInstances,
     ExistentialQuantification #-}
 module KryukovLib.Types.Matrix
-    (Matrix(..), SqrMatrix, SLAE(..),
+    (Matrix(..), SqrMatrix, SLAE(..), lmatrix, umatrix,
     takeDiag, diag, trans)
 where
 
@@ -41,6 +41,22 @@ matrixToDoubleList (Matrix m1) = map vtl m1
 
 mtl :: Matrix s1 s2 t -> [Vector s2 t]
 mtl (Matrix m) = m
+
+-- Returns lower part of martix (without diagonal)
+lmatrix :: forall t s. (LAO t) => (SqrMatrix s t) -> (SqrMatrix s t)
+lmatrix (Matrix m) =
+    Matrix 
+        [Vector $ (take i (vtl (m !! i))) ++ (replicate (n - i + 1) (zero::t)) 
+        | i <- [0..n]]
+    where n = length m - 1
+
+-- Returns upper part of martix (with diagonal)
+umatrix :: forall t s. (LAO t) => (SqrMatrix s t) -> (SqrMatrix s t)
+umatrix (Matrix m) =
+    Matrix 
+        [Vector $ (replicate i (zero::t)) ++ (drop i (vtl (m !! i))) 
+        | i <- [0..n]]
+   where n = length m - 1
 
 instance (Eq t) => Eq (Matrix s1 s2 t) where
     (==) (Matrix m1) (Matrix m2) = and (zipWith (==) m1 m2)    
