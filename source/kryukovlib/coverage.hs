@@ -23,7 +23,7 @@ import KryukovLib.Types.Matrix
 import KryukovLib.Types.Vector
 import KryukovLib.Types.Table
 
-import KryukovLib.Common.DiagonalSLAE (solve3)
+import KryukovLib.Common.Thomas (thomas)
 import KryukovLib.Common.Convergentor (convergentor)
 
 import KryukovLib.Algorithms.SLAE
@@ -116,7 +116,7 @@ slae alg =
 slae3 :: IO ()
 slae3 =
     print $
-        ((solve3
+        ((thomas
             (Vector [2,2,2])
             (Vector [1,1,1])
             (Vector [2,2,2])
