@@ -16,6 +16,7 @@ import KryukovLib.Generic.Peano
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Semigroup
 
+--import KryukovLib.Numbers.QRational
 import KryukovLib.Numbers.DoubleD
 
 import KryukovLib.Types.Complex
@@ -177,7 +178,7 @@ allTests =
     --
     splitter >>
     putStrLn "derivates" >>
-    (derivate (deriv 2 0.00001)) >> (derivate (derivS 2 0.00001)) >>
+    (derivate (deriv 2 0.00001)) >> (derivate (derivS 2 0.00001)) >> (derivate (derivS 2 0.0001))>>
     --
     splitter >>
     putStrLn "slae" >>
