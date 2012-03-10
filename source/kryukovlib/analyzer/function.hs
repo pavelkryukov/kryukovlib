@@ -1,45 +1,52 @@
-data Elementary = Sh | Ch | Exp | Const Double | Zero deriving (Eq)
-data Function = 
-    Function Elementary |
-    Comp Function Function |
-    Mult Function Function |
-    Sum Function Function deriving (Eq)
+{-
+ - analyzer/function.hs
+ -
+ - Kryukov computational mathematics library (KryukovLib)
+ - Copyright (C) Pavel Kryukov, 2011-2012
+-}
 
-derivative :: Function -> Function
-derivative (Sum a b) = Sum (derivative a) (derivative a)
-derivative (Mult a b) = Sum (Mult (derivative a) b) (Mult (derivative b) a)
-derivative (Comp a b) = Mult (derivative b) (Comp (derivative a) b)
-derivative (Function Sh) = Function Ch
-derivative (Function Ch) = Function Sh
-derivative (Function Exp) = Function Exp 
-derivative (Function (Const _)) = Function Zero
-derivative (Function Zero) = Function Zero
+module KryukovLib.Analyzer.Function
+    (Function(..), converter, show')
+where
+   
+data Function =
+    Id                     |
+    Const Double           |
+    Sin                    |
+    Cos                    |
+    Sh                     |
+    Ch                     |
+    Exp                    |
+    Ln                     |
+    Power Double           |
+    Comp Function Function |
+    Mul Function Function  |
+    Sum Function Function   deriving (Eq)
+    
+show' :: Function -> [Char]
+show' Sh = "sh"
+show' Ch = "ch"
+show' Sin = "sin"
+show' Cos = "cos"
+show' Exp = "exp"
+show' Ln = "ln"
+show' Id = "id"
+show' (Const a) = show a
+show' (Sum a b) = show' a ++ " + " ++ show' b
+show' (Mul a b) = "(" ++ show' a ++ "*" ++ show' b ++ ")"
+show' (Comp a b) = show' a ++ "(" ++ show' b ++ ")"
+show' (Power a) = "pwr" ++ show a
 
 converter :: Function -> (Double -> Double)
 converter (Sum a b) = \x -> (converter a x) + (converter b x)
-converter (Mult a b) = \x -> (converter a x) * (converter b x)
+converter (Mul a b) = \x -> (converter a x) * (converter b x)
 converter (Comp a b) = (converter a) . (converter b)
-converter (Function Sh) = sinh
-converter (Function Ch) = cosh
-converter (Function Exp) = exp
-converter (Function (Const cnst)) = \_ -> cnst
-converter (Function Zero) = \_ -> 0
-
-printer :: Function -> [Char]
-printer (Function Sh) = "sh"
-printer (Function Ch) = "ch"
-printer (Function Exp) = "exp"
-printer (Function (Const a)) = show a
-printer (Function Zero) = "0"
-printer (Sum a b) = printer a ++ " + " ++ printer b
-printer (Mult a b) = "(" ++ printer a ++ "*" ++ printer b ++ ")"
-printer (Comp a b) = printer a ++ "(" ++ printer b ++ ")"
-
-simplifier :: Function -> Function
-simplifier (Sum a b)
-    | a == b    = Mult (Function (Const 2)) (simplifier a)
-    | otherwise = Sum (simplifier a) (simplifier b)
-simplifier t = t
-
-main :: IO()
-main = print $ printer (simplifier (derivative (Mult (Function Sh) (Function Ch))))
+converter Sh = sinh
+converter Sin = sin
+converter Ch = cosh
+converter Cos = cos
+converter Exp = exp
+converter Ln = log
+converter Id = id
+converter (Const cnst) = \_ -> cnst
+converter (Power pwr) = (** pwr)

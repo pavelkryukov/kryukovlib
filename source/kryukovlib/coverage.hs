@@ -54,6 +54,10 @@ import KryukovLib.Algorithms.Cauchy.Euler
 import KryukovLib.Algorithms.Cauchy.Heun
 import KryukovLib.Algorithms.Cauchy.RungeKutta4
 
+import KryukovLib.Analyzer.Function
+import KryukovLib.Analyzer.Function.Derivative
+import KryukovLib.Analyzer.Function.Simplifier
+
 import KryukovLib.Solutions
 
 type T = DoubleD
@@ -159,6 +163,24 @@ ode alg =
 splitter :: IO()
 splitter = putStrLn "\n---------------------------"
 
+-------------------------
+-- Analytic derivative --
+-------------------------
+
+anfunction :: Function
+anfunction = simplifier (Mul (Mul Id Id) Id)
+
+anderiv :: Int -> IO()
+anderiv 0 = print $ 
+    (converter anfunction) 1
+anderiv 1 = print $
+    (converter (derivative anfunction)) 1
+anderiv 2 = print $
+    (converter (derivative (derivative anfunction))) 1
+anderiv 3 = print $ 
+    (converter (derivative (derivative (derivative anfunction)))) 1
+anderiv _ = print ""
+
 ---------------------
 -- ALL TESTS LAUCH --
 ---------------------
@@ -178,7 +200,8 @@ allTests =
     --
     splitter >>
     putStrLn "derivates" >>
-    (derivate (deriv 2 0.00001)) >> (derivate (derivS 2 0.00001)) >> (derivate (derivS 2 0.0001))>>
+    (derivate (deriv 2 0.00001)) >> (derivate (derivS 2 0.00001)) >> 
+        (derivate (derivS 2 0.0001))>>
     --
     splitter >>
     putStrLn "slae" >>
@@ -198,4 +221,7 @@ allTests =
     --
     splitter >>
     putStrLn "supermatrix" >>
-    omg
+    omg >>
+    --
+    splitter >>
+    foldl (>>) (putStrLn "analytic derivative") (map anderiv [0..3])
