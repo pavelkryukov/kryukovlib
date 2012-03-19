@@ -8,7 +8,7 @@ module KryukovLib.Generic.Peano
     (Succ(..), One(..), Peano, Two, Three, Four, Five, Six, Seven, Eight)
 where
 
--- Type Peano Numbers for dimensions of Vectos and Matrices
+-- |Type Peano Numbers for dimensions of Vectos and Matrices
 data One    = One
 data Succ a = Succ a
 

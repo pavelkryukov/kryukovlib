@@ -10,6 +10,6 @@ where
 
 import KryukovLib.Types.Table (Table)
 
--- Interpolation operator converts table function to analytic function
+-- |Interpolation operator converts table function to analytic function
 -- Table function should be sorted
 type Interpolation t f = Table t f -> (t -> f)

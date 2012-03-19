@@ -22,11 +22,11 @@ import KryukovLib.Common.Convergentor (matrixiterator)
 
 import KryukovLib.Algorithms.SLAE
 
--- Inverse matrix of diagonal part of specified matrix
+-- |Inverse matrix of diagonal part of specified matrix
 adiag :: (Peano s, Fractional t, Semigroup t) => SqrMatrix s t -> SqrMatrix s t
 adiag = diag . (mapVV recip) . takeDiag
 
--- Jacobi iteration method
+-- |Jacobi iteration method
 jacobi :: 
     (Peano s, 
      Semigroup t,

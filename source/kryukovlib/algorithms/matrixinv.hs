@@ -10,5 +10,5 @@ where
 
 import KryukovLib.Types.Matrix (Matrix)
 
--- Matrix invertor function type
+-- |Matrix invertor function type
 type MatrixInvertor s1 s2 t = Matrix s1 s2 t -> Maybe (Matrix s2 s1 t)

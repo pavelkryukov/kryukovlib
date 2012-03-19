@@ -23,7 +23,7 @@ import KryukovLib.Algorithms.SLAE (SLAESolver)
 
 import KryukovLib.Algorithms.MatrixInv
 
--- Matrix invertor with using SLAESolver
+-- |Matrix invertor with using SLAESolver
 -- Counts every line of inverse matrix as solution of
 -- equation with basis column on the right
 slaeInverse :: (Peano s, LAO (Vector s t), Semigroup t) =>

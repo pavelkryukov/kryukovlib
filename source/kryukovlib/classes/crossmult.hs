@@ -11,7 +11,7 @@ where
 
 import KryukovLib.Classes.Semigroup
 
--- Cross Multiplication class
+-- |Cross Multiplication class
 -- Allows multiplication of one type to another to get the third one
 -- E. g. mulitplication Matrix to Vector and return Vector
 class CrossMult a b c where

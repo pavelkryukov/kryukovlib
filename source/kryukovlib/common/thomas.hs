@@ -12,7 +12,7 @@ import KryukovLib.Generic.Peano
 
 import KryukovLib.Types.Vector (Vector(..))
 
--- Solver of 3-diagonal SLAE
+-- |Solver of 3-diagonal SLAE
 thomas :: (Peano s, Fractional t) =>
     Vector s t -> Vector s t -> Vector s t -> Vector s t -> Vector s t
 thomas (Vector a) (Vector b) (Vector c) (Vector f) = Vector (reverse colX)

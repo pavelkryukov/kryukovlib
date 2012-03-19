@@ -12,18 +12,18 @@ import KryukovLib.Classes.Number
 
 import KryukovLib.Numbers.QRational
 
--- DoubleD is type that allow count numbers in Floating
+-- |DoubleD is type that allow count numbers in Floating
 -- and Rational mode and count imprecisions
 -- Ord class is not instanced for that type!
 -- Please use Norm2 if you need to comparse numbers.
 data DoubleD = DoubleD QRational Double deriving (Read, Eq)
 
--- Imprecision counting
+-- |Imprecision counting
 imprecision :: DoubleD -> Rational
 imprecision (DoubleD a b) =
     ((toRational b) - (toRational a)) / (toRational a)
 
--- Wrapper for function of one argument
+-- |Wrapper for function of one argument
 f1 :: (QRational -> QRational) ->
     (Double -> Double) ->
     (DoubleD -> DoubleD)
@@ -31,7 +31,7 @@ f1 funca funcb =
     \(DoubleD a b) ->
     DoubleD (funca a) (funcb b)
 
--- Wrapper for function of two arguments
+-- |Wrapper for function of two arguments
 f2 :: (QRational -> QRational -> QRational) ->
     (Double -> Double -> Double) ->
     (DoubleD -> DoubleD -> DoubleD)
@@ -40,7 +40,7 @@ f2 funca funcb =
     \(DoubleD a1 b1) ->
     DoubleD (funca a1 a2) (funcb b1 b2)
 
--- Arithmetics
+-- |Arithmetics
 instance Num DoubleD where
     (+) = f2 (+) (+)
     negate = f1 negate negate
@@ -53,13 +53,13 @@ instance Fractional DoubleD where
     fromRational c = DoubleD (fromRational c) (fromRational c)
     recip = f1 recip recip
 
--- Converter to precised type.
+-- |Converter to precised type.
 instance Number DoubleD where
     toPrecise a = DoubleD (toPrecise a) (toPrecise a)
     fromPrecise (DoubleD _ a) = a
     analytic func = \(DoubleD a b) -> DoubleD (analytic func a) (func b)
 
--- Common functions
+-- |Common functions
 instance Floating DoubleD where
     pi = toPrecise pi
     exp = analytic exp
@@ -75,7 +75,7 @@ instance Floating DoubleD where
     acosh = analytic acosh
     atanh = analytic atanh
 
--- Printer
+-- |Printer
 instance Show DoubleD where
     show (DoubleD 0 b) =
         "[~:" ++ show (b::Double) ++

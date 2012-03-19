@@ -18,7 +18,7 @@ import KryukovLib.Types.Table (unTable)
 
 import KryukovLib.Algorithms.Integ
 
--- Trapezoid integral method
+-- |Trapezoid integral method
 trapezoid :: forall t f.
     (CrossMult t f f, Fractional t, LAO f) => Integ t f
 trapezoid f =

@@ -21,30 +21,30 @@ import KryukovLib.Classes.Semigroup
 import KryukovLib.Classes.CrossMult
 
 
--- s-dimension Vector type with support of LAO and CrossMult operations
+-- |s-dimension Vector type with support of LAO and CrossMult operations
 data Vector s t = (Peano s) => Vector [t]
 
 instance (Eq t) => Eq (Vector s t) where
     (==) (Vector v1) (Vector v2) = and (zipWith (==) v1 v2)
     (/=) (Vector v1) (Vector v2) = or (zipWith (/=) v1 v2)
 
--- Printer
+-- |Printer
 instance (Show t) => Show (Vector s t) where
     show (Vector v) = concat [show l ++ "\n" | l <- v]
 
--- Map over Vector with return of list
+-- |Map over Vector with return of list
 mapV :: (t -> b) -> Vector s t -> [b]
 mapV f = map f . vtl
 
--- Map over Vector with return of Vector
+-- |Map over Vector with return of Vector
 mapVV :: (Peano s) => (t -> b) -> Vector s t -> Vector s b
 mapVV f = Vector . map f . vtl
 
--- Canonical basis in n-dimensional space (columns of identity matrix)
+-- |Canonical basis in n-dimensional space (columns of identity matrix)
 basis :: (Peano s, LAO (Vector s t), Semigroup t) => [Vector s t]
 basis = definedBasis $ mapVV (<+> iden) zero
 
--- Canonical basis created from specified vector.
+-- |Canonical basis created from specified vector.
 -- Every basis vector is canonical basis vector
 -- multiplied on corresponding element of specified vector.
 definedBasis :: (Semigroup t) => Vector s t -> [Vector s t]
@@ -59,16 +59,16 @@ definedBasis (Vector v) =
                   (replicate (n - j) zero)))
         [0..n]
 
--- Vector to list convertor
+-- |Vector to list convertor
 vtl :: Vector s t -> [t]
 vtl (Vector v) = v
 
--- Scalar multiplication
+-- |Scalar multiplication
 instance (Semigroup t) 
         => CrossMult (Vector s t) (Vector s t) t where
     (\*\) (Vector a) (Vector b) = laosum $ zipWith (<*>) a b
 
--- Multiplication to number
+-- |Multiplication to number
 instance (Peano s, Semigroup t) =>
         CrossMult t (Vector s t) (Vector s t) where
     a \*\ v = mapVV (a <*>) v

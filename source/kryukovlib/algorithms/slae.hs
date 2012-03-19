@@ -11,6 +11,6 @@ where
 import KryukovLib.Types.Matrix (SLAE)
 import KryukovLib.Types.Vector (Vector)
 
--- SLAESolver is the function which get System and returns
+-- |SLAESolver is the function which get System and returns
 -- its solution, i. e. Vector
 type SLAESolver s t = SLAE s t -> Maybe (Vector s t)

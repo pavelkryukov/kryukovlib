@@ -28,7 +28,7 @@ import KryukovLib.Algorithms.MatrixInv.SLAEInverse
 
 import KryukovLib.Algorithms.SLAE
 
--- Seidel iteration method
+-- |Seidel iteration method
 seidel :: 
     (Peano s,
      Number t,

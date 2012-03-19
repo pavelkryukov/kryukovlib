@@ -16,7 +16,7 @@ import KryukovLib.Classes.Semigroup
 import KryukovLib.Types.Matrix (SqrMatrix)
 import KryukovLib.Types.Vector (Vector(..))
 
--- Convergentor counts value
+-- |Convergentor counts value
 -- u' = f(u) while u' /= u with selected quality q
 -- if number of iterations is greater than n,
 -- non-convergence is detected
@@ -32,7 +32,7 @@ convergentor' n func val
     | (norm2 (val <-> func val)) < q = Just val
     | otherwise = convergentor' (n + 1) func (func val)
 
--- Solution of SLAE using iteration form
+-- |Solution of SLAE using iteration form
 -- x' = Bx + f
 matrixiterator :: (LAO (Vector s t), Semigroup t) =>
     SqrMatrix s t -> Vector s t -> Vector s t -> Maybe (Vector s t)

@@ -10,11 +10,11 @@ where
 
 import Debug.Trace
 
--- Universal stub function
+-- |Universal stub function
 notImpl :: a
 notImpl =
     error "KryukovLib: Not implemented yet"
 
--- Sending value with tracing
+-- |Sending value with tracing
 tr :: (Show a) => a -> a
 tr smth = trace (show smth) smth

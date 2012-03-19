@@ -10,7 +10,7 @@ where
 
 import KryukovLib.Types.Vector
 
--- Breaks function (y0, y1, y[2], ...) = f(x[0], x[1], x[2], ...)
+-- |Breaks function (y0, y1, y[2], ...) = f(x[0], x[1], x[2], ...)
 -- to array of functions (y0, y1, y2, ...) = g(x[n])
 -- in specified point
 splitX :: ((Vector t) -> (Vector f)) -> Vector t -> [(t -> (Vector f))]

@@ -10,7 +10,7 @@ where
 
 import GHC.Float (float2Double, double2Float)
 
--- Number class
+-- |Number class
 -- When you convert number using function toPrecise, you can
 -- use most of the Algorithms of KryukovLib
 class (Num a) => Number a where

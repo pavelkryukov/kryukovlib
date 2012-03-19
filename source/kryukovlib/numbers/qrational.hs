@@ -10,17 +10,17 @@ where
 
 import KryukovLib.Classes.Number
 
--- QRational type is wrapper of Rational type with
+-- |QRational type is wrapper of Rational type with
 -- support of functions (sin, cos, exp, log etc.)
 -- and Number class
 data QRational = QRational Rational deriving (Read, Eq, Ord)
 
--- Wrapper for function of one parameter
+-- |Wrapper for function of one parameter
 f1 :: (Rational -> Rational) ->
     (QRational -> QRational)
 f1 func = \(QRational a) -> QRational (func a)
 
--- Wrapper for function of two parameters
+-- |Wrapper for function of two parameters
 f2 :: (Rational -> Rational -> Rational)
     -> (QRational -> QRational -> QRational)
 f2 func = \(QRational b) -> \(QRational a) -> (QRational (func a b))

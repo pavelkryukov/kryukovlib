@@ -13,7 +13,7 @@ import KryukovLib.Classes.Number
 
 type Norm a = a -> Double
 
--- Class for Linear Algebra Object
+-- |Class for Linear Algebra Object
 -- with defined +, -, 0 and norms
 class LAO a where
     -- Zero element

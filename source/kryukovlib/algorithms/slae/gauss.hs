@@ -21,12 +21,12 @@ import KryukovLib.Types.Matrix
 
 import KryukovLib.Algorithms.SLAE
 
--- Equation is the numbers in one line of matrix
+-- |Equation is the numbers in one line of matrix
 -- and corresponding element of vector, i. e.
 -- ax + by = c -> [a,b,c]
 type Equation t = [t]
 
--- Converter of System type to list of Equations
+-- |Converter of System type to list of Equations
 systemToEquations :: (Peano s) => SLAE s t -> [Equation t]
 systemToEquations (SLAE (Matrix m) v) =
     systemToEquations' m (vtl v)
@@ -40,7 +40,7 @@ systemToEquations (SLAE (Matrix m) v) =
         systemToEquations' _  [] =
             error "Size of matrix and vector are not the same"
 
--- Gaussian elimination of system of equations
+-- |Gaussian elimination of system of equations
 -- Algorithm is based on following:
 -- http://luckytoilet.wordpress.com/2010/02/21/solving-systems-of-linear-equations-in-haskell/
 elimination :: (Fractional t, LAO t, Number t) => 
@@ -112,7 +112,7 @@ elimination matrix =
             in
                 a ++ [init (init row) ++ [1, z / nz]]
 
---Solve a matrix (must already be in REF form) by back substitution.
+-- |Solve a matrix (must already be in REF form) by back substitution.
 substitute :: (Peano s, Fractional t) => Maybe [Equation t] -> Maybe (Vector s t)
 substitute Nothing       = Nothing
 substitute (Just matrix) =
@@ -125,6 +125,6 @@ substitute (Just matrix) =
                 in
                     solution : found
 
--- Exported function
+-- |Gauss method of solving SLAE
 gauss :: (Peano s, Fractional t, LAO t, Number t) => SLAESolver s t
 gauss = substitute . elimination . systemToEquations

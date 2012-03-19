@@ -17,7 +17,7 @@ import KryukovLib.Types.Table (zipTable)
 
 import KryukovLib.Algorithms.Cauchy
 
--- Heun method of solving Cauchy's problem (with correction)
+-- |Heun method of solving Cauchy's problem (with correction)
 heun :: (CrossMult t u u, LAO u, Fractional t) => CauchySolver t u
 heun func nodes base = zipTable nodes values'
     where

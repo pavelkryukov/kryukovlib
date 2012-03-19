@@ -12,7 +12,7 @@ where
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Number
 
--- Class of types with multiplication and identity element
+-- |Class of types with multiplication and identity element
 class (LAO a) => Semigroup a where
     -- Identity element
     iden :: a

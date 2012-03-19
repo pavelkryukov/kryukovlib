@@ -22,7 +22,7 @@ import KryukovLib.Common.Convergentor (matrixiterator)
 
 import KryukovLib.Algorithms.SLAE
 
--- One-parameter iteration method
+-- |One-parameter iteration method
 -- x' = (E - tA)x + tf
 parameter :: 
     (Peano s, Semigroup t, LAO (Vector s t), LAO (SqrMatrix s t)) =>

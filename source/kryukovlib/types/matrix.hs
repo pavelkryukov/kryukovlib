@@ -27,24 +27,24 @@ import KryukovLib.Classes.CrossMult
 
 import KryukovLib.Types.Vector
 
--- Matrix s1 x s2 type with LAO, Semigroup and CrossMult operations
+-- |Matrix s1 x s2 type with LAO, Semigroup and CrossMult operations
 data Matrix s1 s2 t =
     (Peano s1, Peano s2) => Matrix [Vector s2 t]
 
--- Square matrix synonym
+-- |Square matrix synonym
 type SqrMatrix s t = Matrix s s t
 
--- SLAE datatype
+-- |SLAE datatype
 data SLAE s t = SLAE (SqrMatrix s t) (Vector s t)
 
--- Internal functions
+-- |Internal functions
 matrixToDoubleList :: (Matrix s1 s2 t) -> [[t]]
 matrixToDoubleList (Matrix m1) = map vtl m1
 
 mtl :: Matrix s1 s2 t -> [Vector s2 t]
 mtl (Matrix m) = m
 
--- Returns lower part of martix (without diagonal)
+-- |Returns lower part of martix (without diagonal)
 lmatrix :: forall t s. (LAO t) => (SqrMatrix s t) -> (SqrMatrix s t)
 lmatrix (Matrix m) =
     Matrix 
@@ -52,7 +52,7 @@ lmatrix (Matrix m) =
         | i <- [0..n]]
     where n = length m - 1
 
--- Returns upper part of martix (with diagonal)
+-- |Returns upper part of martix (with diagonal)
 umatrix :: forall t s. (LAO t) => (SqrMatrix s t) -> (SqrMatrix s t)
 umatrix (Matrix m) =
     Matrix 
@@ -64,22 +64,22 @@ instance (Eq t) => Eq (Matrix s1 s2 t) where
     (==) (Matrix m1) (Matrix m2) = and (zipWith (==) m1 m2)    
     (/=) (Matrix m1) (Matrix m2) = or (zipWith (/=) m1 m2)
 
--- Matrix printer
+-- |Matrix printer
 instance (Show t) => Show (Matrix s1 s2 t) where
     show (Matrix m) =
         concat $
             map (\l -> concat (mapV (\i -> show i ++ " ") l) ++ "\n") m
 
--- Matrix transponer
+-- |Matrix transponer
 trans :: (Peano s1, Peano s2) => (Matrix s1 s2 t) -> (Matrix s2 s1 t)
 trans = Matrix . map (Vector) . transpose . matrixToDoubleList
 
--- Selects main diagonal in matrix
+-- |Selects main diagonal in matrix
 takeDiag :: SqrMatrix s t -> Vector s t
 takeDiag (Matrix a) =
     Vector $ map (\i -> (vtl (a !! i)) !! i) [0..((length a) - 1)]
 
--- Creates diagonal matrix from vector
+-- |Creates diagonal matrix from vector
 diag :: (Peano s, Semigroup t) => Vector s t -> SqrMatrix s t
 diag = Matrix . definedBasis
 

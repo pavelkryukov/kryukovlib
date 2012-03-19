@@ -17,7 +17,7 @@ import KryukovLib.Types.Table (zipTable)
 
 import KryukovLib.Algorithms.Cauchy
 
--- Simpliest Euler method of solving Cauchy's problem
+-- |Simpliest Euler method of solving Cauchy's problem
 euler :: (CrossMult t u u, LAO u, Num t) => CauchySolver t u
 euler func nodes base = zipTable nodes values
     where

@@ -17,7 +17,7 @@ import KryukovLib.Types.Table (unTable, qual)
 
 import KryukovLib.Algorithms.Integ
 
--- Rectangles integral method
+-- |Rectangles integral method
 -- Table function should have odd number of points
 rectInteg :: (CrossMult t f f, Fractional t, LAO f) => Integ t f
 rectInteg f

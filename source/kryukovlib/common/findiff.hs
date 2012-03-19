@@ -24,7 +24,7 @@ finDiff' func n =
     in
         laosum $ zipWith (\*\) (map (recip . denom) nodes) values
 
--- Finite differences from first element to last
+-- |Finite differences from first element to last
 finDiff :: (CrossMult t f f, LAO f, Eq t, Fractional t) =>  
     (Table t f) -> [f] 
 finDiff func = map (finDiff' func) [0..(qual func)]

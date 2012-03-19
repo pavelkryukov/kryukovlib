@@ -8,7 +8,7 @@ module KryukovLib.Generic.Polynoms
     (legePoly, chebPoly, normedChebPoly, reducedChebPoly)
 where
 
--- Legendre polynoms
+-- |Legendre polynoms
 legePoly :: (Fractional t) => Int -> (t -> t)
 legePoly 0 = const 1
 legePoly 1 = id
@@ -25,14 +25,14 @@ chebPoly' 0 = const 1
 chebPoly' 1 = id
 chebPoly' n = \x -> 2 * x * (chebPoly' (n - 1) x) - (chebPoly' (n - 2) x)
 
--- Chebyshev polynoms
+-- |Chebyshev polynoms
 chebPoly  :: (Fractional t, Floating t) => [t -> t]
 chebPoly = map chebPoly' [0..]
 
--- Normed Chebyshev polynoms
+-- |Normed Chebyshev polynoms
 normedChebPoly :: (Fractional t, Floating t) => [t -> t]
 normedChebPoly = map (\n -> ((/(2^(n-1))) . chebPoly' n)) [0..]
 
--- Reduced Chebyshev polynoms
+-- |Reduced Chebyshev polynoms
 reducedChebPoly :: (Fractional t, Floating t) => [(t -> t)]
 reducedChebPoly = (\_ -> 1 / sqrt(2)) : (tail chebPoly)

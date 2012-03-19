@@ -12,21 +12,21 @@ where
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Semigroup
 
--- Complex number type
+-- |Complex number type
 -- First value is Re, second is Im
 data Complex t    = Complex t t
 
--- Quaternion synonym for Complex on Complex
+-- |Quaternion synonym for Complex on Complex
 type Quaternion t = Complex (Complex t)
 
--- Octonion synonym for Complex on Complex
+-- |Octonion synonym for Complex on Complex
 type Octonion t   = Complex (Quaternion t)
 
--- Imaginary unit
+-- |Imaginary unit
 i :: (Semigroup t) => Complex t
 i = Complex zero iden
 
--- Argument
+-- |Argument
 arg :: (Floating t) => (Complex t) -> t
 arg (Complex x y) = atan (y / x)
 

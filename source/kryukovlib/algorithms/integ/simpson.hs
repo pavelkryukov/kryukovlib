@@ -19,7 +19,7 @@ import KryukovLib.Types.Table (unTable, qual)
 
 import KryukovLib.Algorithms.Integ
 
--- Simpson integral method
+-- |Simpson integral method
 -- Table function should have odd number of points
 simpson :: forall t f.
     (CrossMult t f f, Fractional t, LAO f) => Integ t f

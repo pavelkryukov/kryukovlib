@@ -15,7 +15,7 @@ import KryukovLib.Types.Table (unTable)
 
 import KryukovLib.Algorithms.Interpolation
 
--- Interpolation polynom in Lagrange's form --
+-- |Interpolation polynom in Lagrange's form --
 lagrange :: (CrossMult t f f, Fractional t, Eq t, LAO f) => Interpolation t f
 lagrange func =
     \x -> 

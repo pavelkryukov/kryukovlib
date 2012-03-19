@@ -17,7 +17,7 @@ import KryukovLib.Classes.CrossMult
 
 import KryukovLib.Algorithms.Derivative
 
--- Symmetric derivative
+-- |Symmetric derivative
 derivS :: forall t f. 
     (CrossMult t f f, Fractional t, LAO f) =>
         Int -> t -> Derivate t f
