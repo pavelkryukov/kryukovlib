@@ -7,7 +7,9 @@
 {-# LANGUAGE
     ScopedTypeVariables, 
     FlexibleInstances, 
-    ExistentialQuantification #-}
+    ExistentialQuantification,
+    MultiParamTypeClasses,
+    FlexibleContexts #-}
 module KryukovLib.Types.Vector
     (Vector(..), mapV, mapVV, basis, definedBasis, vtl)
 where

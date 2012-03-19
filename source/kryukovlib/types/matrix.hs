@@ -8,7 +8,9 @@
     ScopedTypeVariables,
     UndecidableInstances,
     FlexibleInstances,
-    ExistentialQuantification #-}
+    ExistentialQuantification,
+    MultiParamTypeClasses,
+    FlexibleContexts #-}
 module KryukovLib.Types.Matrix
     (Matrix(..), SqrMatrix, SLAE(..), lmatrix, umatrix,
     takeDiag, diag, trans)
