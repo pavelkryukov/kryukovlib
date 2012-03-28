@@ -12,13 +12,14 @@ where
 import KryukovLib.Generic.Debug (notImpl)
 
 import KryukovLib.Classes.LAO
+import KryukovLib.Classes.Number
 import KryukovLib.Classes.CrossMult
 
 import KryukovLib.Algorithms.Derivative
 
 -- |Onesided derivative
 deriv :: forall t f. 
-    (CrossMult t f f, Fractional t, LAO f) =>
+    (CrossMult t f f, Number t, LAO f) =>
     Int -> t -> Derivate t f
 deriv n h =
     \func ->

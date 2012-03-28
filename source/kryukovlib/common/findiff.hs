@@ -9,11 +9,12 @@ module KryukovLib.Common.FinDiff
 where
 
 import KryukovLib.Classes.LAO
+import KryukovLib.Classes.Number
 import KryukovLib.Classes.CrossMult
 
 import KryukovLib.Types.Table (Table, unTable, qual)
 
-finDiff' :: (CrossMult t f f, LAO f, Eq t, Fractional t) =>  
+finDiff' :: (CrossMult t f f, LAO f, Eq t, Number t) =>  
     (Table t f) -> Int -> f
 finDiff' func n =
     let
@@ -25,6 +26,6 @@ finDiff' func n =
         laosum $ zipWith (\*\) (map (recip . denom) nodes) values
 
 -- |Finite differences from first element to last
-finDiff :: (CrossMult t f f, LAO f, Eq t, Fractional t) =>  
+finDiff :: (CrossMult t f f, LAO f, Eq t, Number t) =>  
     (Table t f) -> [f] 
 finDiff func = map (finDiff' func) [0..(qual func)]

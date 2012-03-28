@@ -12,6 +12,7 @@ where
 import KryukovLib.Generic.ListFunctions (diffgrid)
 
 import KryukovLib.Classes.LAO
+import KryukovLib.Classes.Number
 import KryukovLib.Classes.CrossMult
 
 import KryukovLib.Types.Table (unTable)
@@ -20,7 +21,7 @@ import KryukovLib.Algorithms.Integ
 
 -- |Trapezoid integral method
 trapezoid :: forall t f.
-    (CrossMult t f f, Fractional t, LAO f) => Integ t f
+    (CrossMult t f f, Number t, LAO f) => Integ t f
 trapezoid f =
     let
         (nodes, values') = unTable f

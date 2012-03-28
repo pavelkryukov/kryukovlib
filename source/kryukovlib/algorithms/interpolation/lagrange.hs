@@ -9,6 +9,7 @@ module KryukovLib.Algorithms.Interpolation.Lagrange
 where
 
 import KryukovLib.Classes.LAO
+import KryukovLib.Classes.Number
 import KryukovLib.Classes.CrossMult
 
 import KryukovLib.Types.Table (unTable)
@@ -16,7 +17,7 @@ import KryukovLib.Types.Table (unTable)
 import KryukovLib.Algorithms.Interpolation
 
 -- |Interpolation polynom in Lagrange's form --
-lagrange :: (CrossMult t f f, Fractional t, Eq t, LAO f) => Interpolation t f
+lagrange :: (CrossMult t f f, Number t, LAO f) => Interpolation t f
 lagrange func =
     \x -> 
         laosum $ zipWith (\*\) (map ($ x) base) values

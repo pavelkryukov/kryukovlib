@@ -43,7 +43,7 @@ systemToEquations (SLAE (Matrix m) v) =
 -- |Gaussian elimination of system of equations
 -- Algorithm is based on following:
 -- http://luckytoilet.wordpress.com/2010/02/21/solving-systems-of-linear-equations-in-haskell/
-elimination :: (Fractional t, LAO t, Number t) => 
+elimination :: (Number t) => 
     [Equation t] -> Maybe [Equation t]
 elimination matrix =
     case foldl reduceRow (Just matrix) [0..length matrix-1] of
@@ -113,7 +113,7 @@ elimination matrix =
                 a ++ [init (init row) ++ [1, z / nz]]
 
 -- |Solve a matrix (must already be in REF form) by back substitution.
-substitute :: (Peano s, Fractional t) => Maybe [Equation t] -> Maybe (Vector s t)
+substitute :: (Peano s, Number t) => Maybe [Equation t] -> Maybe (Vector s t)
 substitute Nothing       = Nothing
 substitute (Just matrix) =
     Just (Vector (foldr next [last (last matrix)] (init matrix)))
@@ -126,5 +126,5 @@ substitute (Just matrix) =
                     solution : found
 
 -- |Gauss method of solving SLAE
-gauss :: (Peano s, Fractional t, LAO t, Number t) => SLAESolver s t
+gauss :: (Peano s, Number t) => SLAESolver s t
 gauss = substitute . elimination . systemToEquations

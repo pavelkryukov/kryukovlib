@@ -11,6 +11,7 @@ where
 import KryukovLib.Generic.ListFunctions (hgrid)
 
 import KryukovLib.Classes.LAO
+import KryukovLib.Classes.Number
 
 import KryukovLib.Types.Table (trace, inverseT)
 import KryukovLib.Types.Matrix (SqrMatrix)
@@ -24,7 +25,7 @@ import KryukovLib.Algorithms.MatrixInv
 -- First argument is for integral algorithm,
 -- second for interval, third is number of nodes
 -- and the fourth one is function
-integA  :: (Fractional t, LAO f) =>
+integA  :: (Number t, LAO f) =>
     Integ t f -> (t,t) -> Int -> (t -> f) -> f
 integA integ interval quality function =
     integ (trace (hgrid interval quality) function)
@@ -46,7 +47,7 @@ hderiv d n = (hderiv d (n - 1)) . d
 --             interval of inverse
 --             number of points interval
 --             function
-inverseA  :: (Fractional t, LAO f) =>
+inverseA  :: (Number t, LAO f) =>
     Interpolation f t -> (t,t) -> Int -> (t -> f) -> (f -> t)
 inverseA interpolation interval quality function =
     interpolation

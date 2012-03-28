@@ -10,7 +10,8 @@
     FlexibleInstances,
     ExistentialQuantification,
     MultiParamTypeClasses,
-    FlexibleContexts #-}
+    FlexibleContexts,
+    IncoherentInstances #-}
 module KryukovLib.Types.Matrix
     (Matrix(..), SqrMatrix, SLAE(..), lmatrix, umatrix,
     takeDiag, diag, trans)

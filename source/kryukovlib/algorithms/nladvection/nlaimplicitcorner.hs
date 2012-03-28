@@ -19,7 +19,7 @@ import KryukovLib.Algorithms.NLAdvection
       x 
 -}
 
-step :: (Fractional t) => t -> Table t t -> Table t t
+step :: (Number t) => t -> Table t t -> Table t t
 step tau func = zipTable grid' result'
     where
         (grid', values) = unTable func
@@ -47,6 +47,6 @@ step tau func = zipTable grid' result'
                 vth'                                    -- (y * q + x) / (1 + q)
         result' = (head values) : uall'
        
-nlaimplicitcorner :: (Fractional t) => t -> Advection t t t
+nlaimplicitcorner :: (Number t) => t -> Advection t t t
 nlaimplicitcorner tau function =
     zipTable (iterate (+ tau) 0) (function : iterate (step tau) function)

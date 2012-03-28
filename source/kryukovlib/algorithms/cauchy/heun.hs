@@ -11,6 +11,7 @@ where
 import KryukovLib.Generic.ListFunctions (diffgrid)
 
 import KryukovLib.Classes.LAO
+import KryukovLib.Classes.Number
 import KryukovLib.Classes.CrossMult
 
 import KryukovLib.Types.Table (zipTable)
@@ -18,7 +19,7 @@ import KryukovLib.Types.Table (zipTable)
 import KryukovLib.Algorithms.Cauchy
 
 -- |Heun method of solving Cauchy's problem (with correction)
-heun :: (CrossMult t u u, LAO u, Fractional t) => CauchySolver t u
+heun :: (CrossMult t u u, LAO u, Number t) => CauchySolver t u
 heun func nodes base = zipTable nodes values'
     where
         funcvals   = zipWith func nodes values

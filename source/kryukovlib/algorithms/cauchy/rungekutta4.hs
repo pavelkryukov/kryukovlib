@@ -12,6 +12,7 @@ where
 import KryukovLib.Generic.ListFunctions (diffgrid, midgrid, superzip)
 
 import KryukovLib.Classes.LAO
+import KryukovLib.Classes.Number
 import KryukovLib.Classes.CrossMult
 
 import KryukovLib.Types.Table (zipTable)
@@ -20,7 +21,7 @@ import KryukovLib.Algorithms.Cauchy
 
 -- |Common fourth-order Runge–Kutta method for solving Cauchy's problem
 rungekutta4 :: forall t u.
-    (CrossMult t u u, LAO u, Fractional t) => CauchySolver t u
+    (CrossMult t u u, LAO u, Number t) => CauchySolver t u
 rungekutta4 func nodes base = zipTable nodes values
     where
         half   = map ((0.5::t) \*\)

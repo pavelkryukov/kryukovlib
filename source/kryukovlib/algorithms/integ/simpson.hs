@@ -13,6 +13,7 @@ import KryukovLib.Generic.ListFunctions
     (evenl, oddl, diffgrid, superzip)
 
 import KryukovLib.Classes.CrossMult
+import KryukovLib.Classes.Number
 import KryukovLib.Classes.LAO
 
 import KryukovLib.Types.Table (unTable, qual)
@@ -22,7 +23,7 @@ import KryukovLib.Algorithms.Integ
 -- |Simpson integral method
 -- Table function should have odd number of points
 simpson :: forall t f.
-    (CrossMult t f f, Fractional t, LAO f) => Integ t f
+    (CrossMult t f f, Number t, LAO f) => Integ t f
 simpson fc
     | (((mod) (qual fc) 2) == 1) = error "Table should have odd number of points"
     | otherwise =

@@ -10,10 +10,12 @@ where
 
 import KryukovLib.Generic.Peano
 
+import KryukovLib.Classes.Number
+
 import KryukovLib.Types.Vector (Vector(..))
 
 -- |Solver of 3-diagonal SLAE
-thomas :: (Peano s, Fractional t) =>
+thomas :: (Peano s, Number t) =>
     Vector s t -> Vector s t -> Vector s t -> Vector s t -> Vector s t
 thomas (Vector a) (Vector b) (Vector c) (Vector f) = Vector (reverse colX)
     where

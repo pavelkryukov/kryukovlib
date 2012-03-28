@@ -9,7 +9,8 @@
     FlexibleInstances, 
     ExistentialQuantification,
     MultiParamTypeClasses,
-    FlexibleContexts #-}
+    FlexibleContexts,
+    IncoherentInstances #-}
 module KryukovLib.Types.Vector
     (Vector(..), mapV, mapVV, basis, definedBasis, vtl)
 where

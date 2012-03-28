@@ -34,8 +34,7 @@ seidel ::
      Number t,
      Semigroup t,
      LAO (Vector s t),
-     LAO (SqrMatrix s t),
-     Fractional t) =>
+     LAO (SqrMatrix s t)) =>
     SLAESolver s t
 seidel =
     \(SLAE a f) ->
