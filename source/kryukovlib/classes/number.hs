@@ -14,7 +14,7 @@ import GHC.Float (float2Double, double2Float)
 -- |Number class
 -- When you convert number using function toPrecise, you can
 -- use most of the Algorithms of KryukovLib
-class (Num a, Fractional a, Eq a) => Number a where
+class (Num a, Fractional a, Eq a, Floating a) => Number a where
     -- Converts Double to number
     toPrecise :: Double -> a    
     -- Converts number to Double

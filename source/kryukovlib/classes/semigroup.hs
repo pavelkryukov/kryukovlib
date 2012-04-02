@@ -34,6 +34,6 @@ class (LAO a) => Semigroup a where
             (False, True) -> ackermann (m <-> iden) iden
             (False, False) -> ackermann (m <-> iden) (ackermann m (n <-> iden))
 
-instance (Num a, Number a) => Semigroup a where
+instance (Number a) => Semigroup a where
     iden = 1
     (<*>) = (*)

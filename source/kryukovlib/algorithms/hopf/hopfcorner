@@ -1,18 +1,18 @@
 {-
- - algorithms/nladvection/nlaimplicitcorner.hs
+ - algorithms/hopf/hopfcorner.hs
  -
  - Kryukov computational mathematics library (KryukovLib)
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
-module KryukovLib.Algorithms.Advection.NLAImplicitCorner
-    (nlaimplicitcorner)
+module KryukovLib.Algorithms.Hopf.HopfCorner
+    (hopfcorner)
 where
 
 import KryukovLib.Generic.ListFunctions
 
 import KryukovLib.Types.Table
 
-import KryukovLib.Algorithms.NLAdvection
+import KryukovLib.Algorithms.Hopf
 
 {-
     y z
@@ -47,6 +47,6 @@ step tau func = zipTable grid' result'
                 vth'                                    -- (y * q + x) / (1 + q)
         result' = (head values) : uall'
        
-nlaimplicitcorner :: (Number t) => t -> Advection t t t
-nlaimplicitcorner tau function =
+hopfcorner :: (Number t) => t -> Advection t t t
+hopfcorner tau function =
     zipTable (iterate (+ tau) 0) (function : iterate (step tau) function)

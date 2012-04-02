@@ -31,7 +31,7 @@ class LAO a where
     laosum = foldl (<+>) zero
     norm3 = sqrt . euclid
     
-instance (Number a, Num a) => LAO a where
+instance (Number a) => LAO a where
     zero = 0
     norm1 = abs . fromPrecise
     norm2 = abs . fromPrecise

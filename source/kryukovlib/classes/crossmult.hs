@@ -10,6 +10,7 @@ module KryukovLib.Classes.CrossMult
 where
 
 import KryukovLib.Classes.Semigroup
+import KryukovLib.Classes.Number
 
 -- |Cross Multiplication class
 -- Allows multiplication of one type to another to get the third one
@@ -18,5 +19,5 @@ class CrossMult a b c where
     -- Cross Multiplication operator
 	(\*\) :: a -> b -> c
 
-instance (Semigroup a, Num a) => CrossMult a a a where
+instance (Semigroup a, Number a) => CrossMult a a a where
     (\*\) = (*)

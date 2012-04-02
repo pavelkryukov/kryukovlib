@@ -21,7 +21,6 @@ import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Semigroup
 import KryukovLib.Classes.CrossMult
 
-
 -- |s-dimension Vector type with support of LAO and CrossMult operations
 data Vector s t = (Peano s) => Vector [t]
 
