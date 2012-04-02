@@ -10,6 +10,8 @@ where
 
 import KryukovLib.Generic.ListFunctions
 
+import KryukovLib.Classes.Number
+
 import KryukovLib.Types.Table
 
 import KryukovLib.Algorithms.Hopf
@@ -18,7 +20,6 @@ import KryukovLib.Algorithms.Hopf
     y z
       x 
 -}
-
 step :: (Number t) => t -> Table t t -> Table t t
 step tau func = zipTable grid' result'
     where
@@ -47,6 +48,6 @@ step tau func = zipTable grid' result'
                 vth'                                    -- (y * q + x) / (1 + q)
         result' = (head values) : uall'
        
-hopfcorner :: (Number t) => t -> Advection t t t
+hopfcorner :: (Number t) => t -> Hopf t t t
 hopfcorner tau function =
     zipTable (iterate (+ tau) 0) (function : iterate (step tau) function)

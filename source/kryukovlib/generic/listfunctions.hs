@@ -5,7 +5,7 @@
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
 module KryukovLib.Generic.ListFunctions
-    (merge, hgrid, chebPolyZeroes,
+    (merge, hgrid, chebPolyZeroes, tail2,
      evenl, oddl, diffgrid, shift, midgrid, superzip)
 where
 
@@ -24,6 +24,10 @@ evenl [] = []
 oddl :: [t] -> [t]
 oddl (_:xs) = evenl xs
 oddl [] = []
+
+-- |List without 2 first elements
+tail2 :: [t] -> [t]
+tail2 = tail . tail
 
 -- |Take differences between list elements
 diffgrid :: (Num t) => [t] -> [t]

@@ -1,12 +1,12 @@
 {-
- - algorithms/ladvection/lacorner.hs
+ - algorithms/advection/corner.hs
  -
  - Kryukov computational mathematics library (KryukovLib)
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
 {-# LANGUAGE TypeFamilies #-}
-module KryukovLib.Algorithms.LAdvection.LACorner
-    (lacorner)
+module KryukovLib.Algorithms.Advection.Corner
+    (corner)
 where
 
 import KryukovLib.Generic.ListFunctions (diffgrid)
@@ -17,7 +17,7 @@ import KryukovLib.Classes.CrossMult
 
 import KryukovLib.Types.Table (Table, unTable, zipTable)
 
-import KryukovLib.Algorithms.LAdvection (LAdvection)
+import KryukovLib.Algorithms.Advection (Advection)
 
 {-
       z
@@ -36,7 +36,7 @@ step v0 tau func = zipTable grid' result
             (tail values)                    -- y * (1 - q)
         result = v0 : (zipWith (<+>) u1 u2)  -- result
        
-lacorner :: (LAO f, Number t, CrossMult t f f) => LAdvection t f
+lacorner :: (LAO f, Number t, CrossMult t f f) => Advection t f
 lacorner funcX funcT = zipTable tnodes result
     where
         (tnodes, tvalues) = unTable funcT

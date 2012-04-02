@@ -8,6 +8,8 @@ module KryukovLib.Algorithms.Hopf.Lax
     (lax)
 where
 
+import KryukovLib.Generic.ListFunctions (tail2)
+
 import KryukovLib.Classes.Number
 
 import KryukovLib.Types.Table
@@ -18,10 +20,6 @@ import KryukovLib.Algorithms.Hopf
       z
     x w y
 -}
-
-tail2 :: [t] -> [t]
-tail2 = tail . tail
-
 step :: (Number t) => t -> Table t t -> Table t t
 step tau func = zipTable grid' result
     where
@@ -36,6 +34,6 @@ step tau func = zipTable grid' result
         u1     = zipWith (*) vth xylist               -- (x - y) * q  
         result = (head xlist) : (zipWith (+) u1 wlist) ++ [head xlist]  -- result
        
-lax :: (Number t) => t -> NLAdvection t t t
+lax :: (Number t) => t -> Hopf t t t
 lax tau function =
     zipTable (iterate (+ tau) 0) (function : iterate (step tau) function)

@@ -1,12 +1,12 @@
 {-
- - algorithms/ladvection/laimplicitcorner.hs
+ - algorithms/advection/implicitcorner.hs
  -
  - Kryukov computational mathematics library (KryukovLib)
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
 {-# LANGUAGE TypeFamilies #-}
-module KryukovLib.Algorithms.LAdvection.LAImplicitCorner
-    (laimplicitcorner)
+module KryukovLib.Algorithms.Advection.ImplicitCorner
+    (implicitcorner)
 where
 
 import KryukovLib.Generic.ListFunctions (diffgrid)
@@ -17,13 +17,12 @@ import KryukovLib.Classes.CrossMult
 
 import KryukovLib.Types.Table (Table, unTable, zipTable)
 
-import KryukovLib.Algorithms.LAdvection (LAdvection)
+import KryukovLib.Algorithms.Advection (Advection)
 
 {-
     y z
       x 
 -}
-
 step :: (t ~ x, LAO f, Number t, CrossMult t f f) =>
     f -> t -> Table x f -> Table x f
 step v0 tau func = zipTable grid' result
@@ -38,8 +37,8 @@ step v0 tau func = zipTable grid' result
                     u21                               -- (y * q + x) / (1 + q)
         result  = v0 : uall
        
-laimplicitcorner :: (LAO f, Number t, CrossMult t f f) => LAdvection t f
-laimplicitcorner funcX funcT = zipTable tnodes result
+implicitcorner :: (LAO f, Number t, CrossMult t f f) => Advection t f
+implicitcorner funcX funcT = zipTable tnodes result
     where
         (tnodes, tvalues) = unTable funcT
         taus = diffgrid tnodes
