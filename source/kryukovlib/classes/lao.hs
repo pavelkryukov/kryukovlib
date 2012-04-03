@@ -4,7 +4,11 @@
  - Kryukov computational mathematics library (KryukovLib)
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
-{-# LANGUAGE FlexibleInstances, UndecidableInstances, OverlappingInstances #-}
+{-# LANGUAGE 
+    FlexibleInstances,
+    UndecidableInstances,
+    OverlappingInstances,
+    IncoherentInstances #-}
 module KryukovLib.Classes.LAO
     (LAO(..), Norm)
 where
@@ -38,3 +42,11 @@ instance (Number a) => LAO a where
     euclid = (**2) . fromPrecise
     (<+>) = (+)
     (<->) = (-)
+
+instance (LAO a) => LAO [a] where
+    zero = repeat zero
+    norm1  = maximum . (map norm1)
+    norm2  = sum . (map norm2)
+    euclid = sum . map euclid
+    a <+> b = zipWith (<+>) a b
+    a <-> b = zipWith (<->) a b

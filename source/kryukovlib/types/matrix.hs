@@ -99,8 +99,8 @@ instance (Peano s,
     norm2 (Matrix m) = norm2 (head m)
 --  euclid m = maximum $ map norm3 (eigenvalues (transMult m))
     euclid = notImpl
-    (Matrix a) <+> (Matrix b) = Matrix $ zipWith (<+>) a b
-    (Matrix a) <-> (Matrix b) = Matrix $ zipWith (<->) a b
+    (Matrix a) <+> (Matrix b) = Matrix $ a <+> b
+    (Matrix a) <-> (Matrix b) = Matrix $ a <-> b
 
 instance forall t s1 s2.
         (Peano s1,
@@ -114,8 +114,8 @@ instance forall t s1 s2.
     norm2 (Matrix m) = maximum $ map norm2 m
 --  euclid m = maximum $ map norm3 (eigenvalues (transMult m))
     euclid = notImpl
-    (Matrix a) <+> (Matrix b) = Matrix $ zipWith (<+>) a b
-    (Matrix a) <-> (Matrix b) = Matrix $ zipWith (<->) a b
+    (Matrix a) <+> (Matrix b) = Matrix $ a <+> b
+    (Matrix a) <-> (Matrix b) = Matrix $ a <-> b
 
 -- Multiplication Matrix on Number
 instance (Semigroup t) => CrossMult (Matrix s1 s2 t) t (Matrix s1 s2 t) where

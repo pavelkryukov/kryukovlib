@@ -24,10 +24,10 @@ heun func nodes base = zipTable nodes values'
     where
         funcvals   = zipWith func nodes values
         funcvals2  = zipWith func nodes values'
-        funcvals'  = zipWith (<+>) funcvals2 (tail funcvals)
+        funcvals'  = funcvals2 <+> (tail funcvals)
         diffnodes  = diffgrid nodes
         diffnodes' = map (/2) diffnodes
         deltas     = zipWith (\*\) diffnodes  funcvals
         deltas'    = zipWith (\*\) diffnodes' funcvals'
-        values     = base : zipWith (<+>) values deltas
-        values'    = base : zipWith (<+>) values deltas'
+        values     = base : (values <+> deltas)
+        values'    = base : (values <+> deltas')

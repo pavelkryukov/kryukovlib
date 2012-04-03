@@ -24,4 +24,4 @@ euler func nodes base = zipTable nodes values
         funcvals  = zipWith func nodes values
         diffnodes = diffgrid nodes
         deltas    = zipWith (\*\) diffnodes funcvals
-        values    = base : zipWith (<+>) values deltas
+        values    = base : (values <+> deltas)
