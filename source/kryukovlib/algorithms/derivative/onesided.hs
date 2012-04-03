@@ -9,6 +9,8 @@ module KryukovLib.Algorithms.Derivative.OneSided
     (deriv)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Generic.Debug (notImpl)
 
 import KryukovLib.Classes.LAO

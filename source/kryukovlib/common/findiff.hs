@@ -8,6 +8,9 @@ module KryukovLib.Common.FinDiff
     (finDiff)
 where
 
+import Prelude hiding (Num(..))
+import qualified Prelude as P
+
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Number
 import KryukovLib.Classes.CrossMult
@@ -19,8 +22,8 @@ finDiff' :: (CrossMult t f f, LAO f, Eq t, Number t) =>
 finDiff' func n =
     let
         (nodes', values') = unTable func
-        nodes  = take (n + 1) nodes'
-        values = take (n + 1) values'
+        nodes  = take (n P.+ 1) nodes'
+        values = take (n P.+ 1) values'
         denom val = product $ map (val -) (filter (/= (val)) nodes)
     in
         laosum $ zipWith (\*\) (map (recip . denom) nodes) values

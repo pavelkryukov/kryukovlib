@@ -9,6 +9,8 @@ module KryukovLib.Algorithms.SLAE.Parameter
     (parameter)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Generic.Peano
 
 import KryukovLib.Classes.LAO
@@ -28,4 +30,4 @@ parameter ::
     (Peano s, Semigroup t, LAO (Vector s t), LAO (SqrMatrix s t)) =>
         t -> SLAESolver s t
 parameter tau =
-    \(SLAE a f) -> matrixiterator (iden <-> (tau \*\ a)) (tau \*\ f) zero
+    \(SLAE a f) -> matrixiterator (iden - (tau \*\ a)) (tau \*\ f) zero

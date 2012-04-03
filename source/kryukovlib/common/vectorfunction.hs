@@ -8,6 +8,8 @@ module KryukovLib.Types.VectorFunction
     (splitX)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Types.Vector
 
 -- |Breaks function (y0, y1, y[2], ...) = f(x[0], x[1], x[2], ...)

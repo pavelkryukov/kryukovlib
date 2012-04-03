@@ -8,6 +8,10 @@ module KryukovLib.Types.Table
     (Table, zipTable, inverseT, trace, qual, unTable)
 where
 
+import Prelude hiding (Num(..))
+import qualified Prelude as P
+
+
 import Data.Tuple
 
 -- |Table of values (x,y)
@@ -22,7 +26,7 @@ instance (Show t, Show f) => Show (Table t f) where
 
 -- |Zipping list of nodes and values into Table
 zipTable :: [t] -> [f] -> Table t f
-zipTable x y = Table (zip x y) (length x - 1)
+zipTable x y = Table (zip x y) (length x P.- 1)
 
 -- |Unzipping Table to lists of nodes and values
 unTable :: Table t f -> ([t], [f])
@@ -34,7 +38,7 @@ inverseT (Table f q) = Table (map swap f) q
 
 -- |Generator of Table from grid and analytic function --
 trace :: [t] -> (t -> f) -> Table t f
-trace grid func = Table (map (\i -> (i, func i)) grid) (length grid - 1)
+trace grid func = Table (map (\i -> (i, func i)) grid) (length grid P.- 1)
 
 -- |Quality of Table (amount of points - 1)
 qual :: Table t f -> Int

@@ -8,6 +8,8 @@ module KryukovLib.Algorithms.LAdvection
     (LAdvection)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Types.Table (Table)
 
 -- |LAdvection solves equation du/dt + du/dx = 0

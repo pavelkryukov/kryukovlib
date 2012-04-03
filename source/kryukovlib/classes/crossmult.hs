@@ -9,6 +9,8 @@ module KryukovLib.Classes.CrossMult
     (CrossMult(..))
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Classes.Semigroup
 import KryukovLib.Classes.Number
 

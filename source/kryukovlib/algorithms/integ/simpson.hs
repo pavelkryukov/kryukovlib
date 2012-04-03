@@ -9,6 +9,8 @@ module KryukovLib.Algorithms.Integ.Simpson
     (simpson)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Generic.ListFunctions 
     (evenl, oddl, diffgrid, superzip)
 
@@ -31,7 +33,7 @@ simpson fc
             (nodes, values') = unTable fc
             diffnodes = diffgrid $ evenl nodes
             values = 
-                superzip (<+>) [
+                superzip (+) [
                     evenl values',
                     map ((4::t) \*\) (oddl values'),
                     tail (evenl values')

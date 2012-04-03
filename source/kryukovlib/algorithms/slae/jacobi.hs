@@ -9,6 +9,8 @@ module KryukovLib.Algorithms.SLAE.Jacobi
     (jacobi)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Generic.Peano
 
 import KryukovLib.Classes.LAO
@@ -40,4 +42,4 @@ jacobi =
         let
             d = adiag a
         in
-            matrixiterator (iden <-> (d <*> a)) (d \*\ f) zero
+            matrixiterator (iden - (d * a)) (d \*\ f) zero

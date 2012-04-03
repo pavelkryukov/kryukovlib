@@ -8,6 +8,8 @@ module KryukovLib.Algorithms.Interpolation.Newton
     (newton)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.CrossMult
 import KryukovLib.Classes.Number

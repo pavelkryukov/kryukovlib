@@ -8,6 +8,8 @@ module KryukovLib.Algorithms.Interpolation.Lagrange
     (lagrange)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Number
 import KryukovLib.Classes.CrossMult

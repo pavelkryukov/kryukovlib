@@ -8,6 +8,8 @@ module KryukovLib.Coverage
     (allTests)
 where
 
+import Prelude hiding (Num(..))
+
 import Data.Maybe (fromJust)
 
 import KryukovLib.Generic.ListFunctions (hgrid)
@@ -141,7 +143,7 @@ testmatrix =
 invertmatrix :: IO ()
 invertmatrix =
     case ((slaeInverse gauss) testmatrix) of
-        Just invmatrix -> print ((invmatrix <*> testmatrix)::Matrix Two Two T)
+        Just invmatrix -> print ((invmatrix * testmatrix)::Matrix Two Two T)
         Nothing -> putStrLn "Matrix couldn't be inverted"
 
 condnumcounter :: (Norm (Matrix Two Two T)) -> IO ()

@@ -8,10 +8,14 @@ module KryukovLib.Solutions
     (integA, hderiv, inverseA, condNumber)
 where
 
+import Prelude hiding (Num(..))
+import qualified Prelude as P
+
 import KryukovLib.Generic.ListFunctions (hgrid)
 
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Number
+import KryukovLib.Classes.Semigroup
 
 import KryukovLib.Types.Table (trace, inverseT)
 import KryukovLib.Types.Matrix (SqrMatrix)
@@ -35,7 +39,7 @@ integA integ interval quality function =
 -- second is the order of deriving
 hderiv :: (Derivate t f) -> Int -> (Derivate t f)
 hderiv _ 0 = id
-hderiv d n = (hderiv d (n - 1)) . d
+hderiv d n = (hderiv d (n P.- 1)) . d
 
 -- |jacobian :: (Derivate t (Vector f)) ->
 --    ((Vector t) -> (Vector f)) -> ((Vector t) -> (Matrix f))

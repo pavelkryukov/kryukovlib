@@ -8,6 +8,9 @@ module KryukovLib.Algorithms.SLAE.Gauss
     (gauss)
 where
 
+import Prelude hiding (Num(..))
+import qualified Prelude as P
+
 import Data.List (elemIndex)
 import Data.Maybe (fromJust)
 
@@ -15,6 +18,7 @@ import KryukovLib.Generic.Peano
 
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Number
+import KryukovLib.Classes.Semigroup
 
 import KryukovLib.Types.Vector
 import KryukovLib.Types.Matrix
@@ -46,7 +50,7 @@ systemToEquations (SLAE (Matrix m) v) =
 elimination :: (Number t) => 
     [Equation t] -> Maybe [Equation t]
 elimination matrix =
-    case foldl reduceRow (Just matrix) [0..length matrix-1] of
+    case foldl reduceRow (Just matrix) [0..length matrix P.- 1] of
         Just m -> Just (fixlastrow m)
         Nothing -> Nothing
     where
@@ -57,7 +61,7 @@ elimination matrix =
             | otherwise =
                 let
                     (p1,p2) = splitAt a xs
-                    (p3,p4) = splitAt (b - a - 1) (tail p2)
+                    (p3,p4) = splitAt (b P.- a P.- 1) (tail p2)
                 in
                     p1 ++ [xs!!b] ++ p3 ++ [xs!!a] ++ (tail p4)
 
@@ -68,11 +72,11 @@ elimination matrix =
                 currentrow =
                     map
                         (\x -> norm2 (matrix1 !! x !! r))
-                        [r..length matrix1 - 1]
+                        [r..length matrix1 P.- 1]
 
                 greatest =
                     case (elemIndex (maximum currentrow) currentrow) of
-                        Just r' -> Just (r + r')
+                        Just r' -> Just (r P.+ r')
                         Nothing -> Nothing
 
                 --matrix with row swapped (if needed)
@@ -95,7 +99,7 @@ elimination matrix =
                         zipWith (\a b -> k*a - b) row1 nr
 
                 --apply subrow to all rows below
-                nextrows = map subrow $ drop (r+1) (fromJust matrix2)
+                nextrows = map subrow $ drop (r P.+ 1) (fromJust matrix2)
 
             --concat the lists and repeat
             in
@@ -120,7 +124,7 @@ substitute (Just matrix) =
         where
             next row found =
                 let
-                    subpart = init $ drop (length matrix - length found) row
+                    subpart = init $ drop (length matrix P.- length found) row
                     solution = last row - sum (zipWith (*) found subpart)
                 in
                     solution : found

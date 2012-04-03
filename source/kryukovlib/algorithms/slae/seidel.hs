@@ -9,6 +9,8 @@ module KryukovLib.Algorithms.SLAE.Seidel
     (seidel)
 where
 
+import Prelude hiding (Num(..))
+
 import Data.Maybe (fromJust)
 
 import KryukovLib.Generic.Peano
@@ -41,6 +43,6 @@ seidel =
         let
             (l, u) = (lmatrix a, umatrix a)
             u' = fromJust ((slaeInverse gauss) u)
-            b = zero <-> (u' <*> l)
+            b = zero - (u' * l)
         in
             matrixiterator b (u' \*\ f) zero

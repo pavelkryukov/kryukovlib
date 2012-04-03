@@ -8,6 +8,9 @@ module KryukovLib.Generic.Debug
     (notImpl, tr)
 where
 
+import Prelude hiding (Num(..))
+
+import Prelude hiding (Num(..))
 import Debug.Trace
 
 -- |Universal stub function

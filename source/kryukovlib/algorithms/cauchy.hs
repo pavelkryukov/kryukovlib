@@ -8,6 +8,8 @@ module KryukovLib.Algorithms.Cauchy
     (CauchySolver)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Types.Table (Table)
 
 -- |CauchySolver solves Cauchy's problem dU/dt = F(U,t)

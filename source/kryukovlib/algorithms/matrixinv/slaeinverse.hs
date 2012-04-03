@@ -9,6 +9,8 @@ module KryukovLib.Algorithms.MatrixInv.SLAEInverse
     (slaeInverse)
 where
 
+import Prelude hiding (Num(..))
+
 import Data.Maybe
 
 import KryukovLib.Generic.Peano

@@ -8,6 +8,8 @@ module KryukovLib.Algorithms.Hopf.HopfCorner
     (hopfcorner)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Generic.ListFunctions
 
 import KryukovLib.Classes.Number

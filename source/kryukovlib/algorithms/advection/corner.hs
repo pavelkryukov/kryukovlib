@@ -9,6 +9,8 @@ module KryukovLib.Algorithms.Advection.Corner
     (corner)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Generic.ListFunctions (diffgrid)
 
 import KryukovLib.Classes.LAO
@@ -34,7 +36,7 @@ step v0 tau func = zipTable grid' result
             (\a -> \b -> (1 - a) \*\ b)
             th 
             (tail values)                    -- y * (1 - q)
-        result = v0 : (u1 <+> u2)  -- result
+        result = v0 : (u1 + u2)  -- result
        
 lacorner :: (LAO f, Number t, CrossMult t f f) => Advection t f
 lacorner funcX funcT = zipTable tnodes result

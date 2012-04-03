@@ -9,6 +9,8 @@ module KryukovLib.Algorithms.Cauchy.RungeKutta4
     (rungekutta4)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Generic.ListFunctions (diffgrid, midgrid, superzip)
 
 import KryukovLib.Classes.LAO
@@ -31,15 +33,15 @@ rungekutta4 func nodes base = zipTable nodes values
         shiftnodes = tail nodes
         midnodes   = midgrid nodes
 
-        vk1 = values <+> (half k1)
-        vk2 = values <+> (half k2)
-        vk3 = values <+> k3
+        vk1 = values + (half k1)
+        vk2 = values + (half k2)
+        vk3 = values + k3
 
         k1   = zipWith (\*\) diffnodes (zipWith func nodes   values)
         k2   = zipWith (\*\) diffnodes (zipWith func midnodes   vk1)
         k3   = zipWith (\*\) diffnodes (zipWith func midnodes   vk2)
         k4   = zipWith (\*\) diffnodes (zipWith func shiftnodes vk3)
 
-        ka   = sixth $ superzip (<+>) [k1, k2, k2, k3, k3, k4]
+        ka   = sixth $ superzip (+) [k1, k2, k2, k3, k3, k4]
 
-        values = base : (values <+> ka)
+        values = base : (values + ka)

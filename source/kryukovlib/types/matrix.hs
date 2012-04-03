@@ -17,6 +17,9 @@ module KryukovLib.Types.Matrix
     takeDiag, diag, trans)
 where
 
+import Prelude hiding (Num(..))
+import qualified Prelude as P
+
 import Data.List (transpose)
 
 import KryukovLib.Generic.Debug (notImpl)
@@ -49,9 +52,9 @@ mtl (Matrix m) = m
 lmatrix :: forall t s. (LAO t) => (SqrMatrix s t) -> (SqrMatrix s t)
 lmatrix (Matrix m) =
     Matrix 
-        [Vector $ (take i (vtl (m !! i))) ++ (replicate (n - i + 1) (zero::t)) 
+        [Vector $ (take i (vtl (m !! i))) ++ (replicate (n P.- i P.+ 1) (zero::t)) 
         | i <- [0..n]]
-    where n = length m - 1
+    where n = length m P.- 1
 
 -- |Returns upper part of martix (with diagonal)
 umatrix :: forall t s. (LAO t) => (SqrMatrix s t) -> (SqrMatrix s t)
@@ -59,7 +62,7 @@ umatrix (Matrix m) =
     Matrix 
         [Vector $ (replicate i (zero::t)) ++ (drop i (vtl (m !! i))) 
         | i <- [0..n]]
-   where n = length m - 1
+   where n = length m P.- 1
 
 instance (Eq t) => Eq (Matrix s1 s2 t) where
     (==) (Matrix m1) (Matrix m2) = and (zipWith (==) m1 m2)    
@@ -78,7 +81,7 @@ trans = Matrix . map (Vector) . transpose . matrixToDoubleList
 -- |Selects main diagonal in matrix
 takeDiag :: SqrMatrix s t -> Vector s t
 takeDiag (Matrix a) =
-    Vector $ map (\i -> (vtl (a !! i)) !! i) [0..((length a) - 1)]
+    Vector $ map (\i -> (vtl (a !! i)) !! i) [0..((length a) P.- 1)]
 
 -- |Creates diagonal matrix from vector
 diag :: (Peano s, Semigroup t) => Vector s t -> SqrMatrix s t
@@ -99,8 +102,8 @@ instance (Peano s,
     norm2 (Matrix m) = norm2 (head m)
 --  euclid m = maximum $ map norm3 (eigenvalues (transMult m))
     euclid = notImpl
-    (Matrix a) <+> (Matrix b) = Matrix $ a <+> b
-    (Matrix a) <-> (Matrix b) = Matrix $ a <-> b
+    (Matrix a) + (Matrix b) = Matrix $ a + b
+    (Matrix a) - (Matrix b) = Matrix $ a - b
 
 instance forall t s1 s2.
         (Peano s1,
@@ -114,8 +117,8 @@ instance forall t s1 s2.
     norm2 (Matrix m) = maximum $ map norm2 m
 --  euclid m = maximum $ map norm3 (eigenvalues (transMult m))
     euclid = notImpl
-    (Matrix a) <+> (Matrix b) = Matrix $ a <+> b
-    (Matrix a) <-> (Matrix b) = Matrix $ a <-> b
+    (Matrix a) + (Matrix b) = Matrix $ a + b
+    (Matrix a) - (Matrix b) = Matrix $ a - b
 
 -- Multiplication Matrix on Number
 instance (Semigroup t) => CrossMult (Matrix s1 s2 t) t (Matrix s1 s2 t) where
@@ -139,5 +142,5 @@ instance (Peano s3, Semigroup t) =>
 instance (Peano s, Semigroup t, LAO (SqrMatrix s t), LAO (Vector s t)) =>
         Semigroup (SqrMatrix s t) where
     iden = Matrix basis
-    (Matrix a) <*> b =
+    (Matrix a) * b =
         Matrix (map (\a1 -> Vector (map (\*\ a1) ((mtl . trans) b))) a)

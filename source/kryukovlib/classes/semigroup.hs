@@ -9,6 +9,9 @@ module KryukovLib.Classes.Semigroup
     (Semigroup(..))
 where
 
+import Prelude hiding (Num(..))
+import qualified Prelude as P
+
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Number
 
@@ -17,10 +20,10 @@ class (LAO a) => Semigroup a where
     -- Identity element
     iden :: a
     -- Multiplication
-    (<*>) :: a -> a -> a
+    (*) :: a -> a -> a
     -- Fibonacci range
     fibonacci :: [a]
-    fibonacci = zero : iden : fibonacci <+> (tail fibonacci)
+    fibonacci = zero : iden : fibonacci + (tail fibonacci)
     -- Kroneker symbol
     kroneker :: (Eq t) => t -> t -> a
     kroneker m n
@@ -30,10 +33,10 @@ class (LAO a) => Semigroup a where
     ackermann :: (Eq a) => a -> a -> a
     ackermann m n = 
         case (m == zero, n == zero) of
-            (True, _) -> n <+> iden
-            (False, True) -> ackermann (m <-> iden) iden
-            (False, False) -> ackermann (m <-> iden) (ackermann m (n <-> iden))
+            (True, _) -> n + iden
+            (False, True) -> ackermann (m - iden) iden
+            (False, False) -> ackermann (m - iden) (ackermann m (n - iden))
 
 instance (Number a) => Semigroup a where
     iden = 1
-    (<*>) = (*)
+    (*) = (P.*)

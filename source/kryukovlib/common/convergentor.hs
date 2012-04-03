@@ -9,6 +9,9 @@ module KryukovLib.Common.Convergentor
     (convergentor, matrixiterator)
 where
 
+import Prelude hiding (Num(..))
+import qualified Prelude as P
+
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.CrossMult
 import KryukovLib.Classes.Semigroup
@@ -29,11 +32,11 @@ q = 0.000001
 convergentor' :: (LAO a) => Int -> (a -> a) -> a -> Maybe a
 convergentor' n func val
     | n > 100000 = Nothing
-    | (norm2 (val <-> func val)) < q = Just val
-    | otherwise = convergentor' (n + 1) func (func val)
+    | (norm2 (val - func val)) < q = Just val
+    | otherwise = convergentor' (n P.+ 1) func (func val)
 
 -- |Solution of SLAE using iteration form
 -- x' = Bx + f
 matrixiterator :: (LAO (Vector s t), Semigroup t) =>
     SqrMatrix s t -> Vector s t -> Vector s t -> Maybe (Vector s t)
-matrixiterator b f = convergentor ((f <+> ) . (b \*\))
+matrixiterator b f = convergentor ((f + ) . (b \*\))

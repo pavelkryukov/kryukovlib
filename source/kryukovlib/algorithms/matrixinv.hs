@@ -8,6 +8,8 @@ module KryukovLib.Algorithms.MatrixInv
     (MatrixInvertor)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Types.Matrix (Matrix)
 
 -- |Matrix invertor function type

@@ -8,6 +8,8 @@ module KryukovLib.Algorithms.SLAE
     (SLAESolver)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Types.Matrix (SLAE)
 import KryukovLib.Types.Vector (Vector)
 

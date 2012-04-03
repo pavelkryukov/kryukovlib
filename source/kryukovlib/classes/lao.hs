@@ -13,6 +13,9 @@ module KryukovLib.Classes.LAO
     (LAO(..), Norm)
 where
 
+import Prelude hiding (Num(..))
+import qualified Prelude as P
+
 import KryukovLib.Classes.Number
 
 type Norm a = a -> Double
@@ -28,25 +31,25 @@ class LAO a where
     euclid :: Norm a    
     norm3 :: Norm a
     -- Linear operations
-    (<+>) :: a -> a -> a
-    (<->) :: a -> a -> a
+    (+) :: a -> a -> a
+    (-) :: a -> a -> a
     -- Linear list sum
     laosum :: [a] -> a
-    laosum = foldl (<+>) zero
+    laosum = foldl (+) zero
     norm3 = sqrt . euclid
     
 instance (Number a) => LAO a where
     zero = 0
-    norm1 = abs . fromPrecise
-    norm2 = abs . fromPrecise
+    norm1 = P.abs . fromPrecise
+    norm2 = P.abs . fromPrecise
     euclid = (**2) . fromPrecise
-    (<+>) = (+)
-    (<->) = (-)
+    (+) = (P.+)
+    (-) = (P.-)
 
 instance (LAO a) => LAO [a] where
     zero = repeat zero
     norm1  = maximum . (map norm1)
     norm2  = sum . (map norm2)
     euclid = sum . map euclid
-    a <+> b = zipWith (<+>) a b
-    a <-> b = zipWith (<->) a b
+    a + b = zipWith (+) a b
+    a - b = zipWith (-) a b

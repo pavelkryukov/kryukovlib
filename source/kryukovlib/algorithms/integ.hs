@@ -8,6 +8,8 @@ module KryukovLib.Algorithms.Integ
     (Integ)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Types.Table (Table)
 
 -- |Integ operator counts integral over table function

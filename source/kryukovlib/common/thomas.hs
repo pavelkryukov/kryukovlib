@@ -8,8 +8,12 @@ module KryukovLib.Common.Thomas
     (thomas)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Generic.Peano
 
+import KryukovLib.Classes.LAO
+import KryukovLib.Classes.Semigroup
 import KryukovLib.Classes.Number
 
 import KryukovLib.Types.Vector (Vector(..))

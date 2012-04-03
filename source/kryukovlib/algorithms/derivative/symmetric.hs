@@ -9,6 +9,8 @@ module KryukovLib.Algorithms.Derivative.Symmetric
     (derivS)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Generic.Debug (notImpl)
 import KryukovLib.Generic.ListFunctions (merge)
 
@@ -28,7 +30,7 @@ derivS n h =
         (recip h) \*\
         (laosum::[f]->f) (zipWith (\*\) (coeffs n) (map func (gridS x)))
         where
-            gridS a = merge (iterate (+ (-h)) (a - h)) (iterate (+ h) (a + h))
+            gridS a = merge ((iterate (+ (0 - h))) (a - h)) (iterate (+ h) (a + h))
             coeffs :: Int -> [t]
             coeffs 2 = [-1/2, 1/2]
             coeffs 4 = [4/3, -4/3, -1/12, 1/12]

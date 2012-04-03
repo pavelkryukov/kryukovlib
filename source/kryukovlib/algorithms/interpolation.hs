@@ -8,6 +8,8 @@ module KryukovLib.Algorithms.Interpolation
     (Interpolation)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Types.Table (Table)
 
 -- |Interpolation operator converts table function to analytic function

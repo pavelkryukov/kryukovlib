@@ -9,6 +9,8 @@ module KryukovLib.Algorithms.Integ.Trapezoid
     (trapezoid)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Generic.ListFunctions (diffgrid)
 
 import KryukovLib.Classes.LAO
@@ -26,6 +28,6 @@ trapezoid f =
     let
         (nodes, values') = unTable f
         diffnodes = diffgrid nodes
-        values  = (tail values') <+> values'
+        values  = (tail values') + values'
     in
         (0.5::t) \*\ ((laosum::[f]->f) (zipWith (\*\) diffnodes values))

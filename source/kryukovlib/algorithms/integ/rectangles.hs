@@ -8,6 +8,8 @@ module KryukovLib.Algorithms.Integ.Rectangles
     (rectInteg)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Generic.ListFunctions (evenl, oddl, diffgrid)
 
 import KryukovLib.Classes.LAO

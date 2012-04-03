@@ -8,6 +8,8 @@ module KryukovLib.Algorithms.Hopf
     (Hopf)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Types.Table (Table)
 
 -- |Solves equation du/dt + d(u^2/2)/dx = 0

@@ -9,6 +9,8 @@ module KryukovLib.Classes.Number
     (Number(..))
 where
 
+--import Prelude hiding (Num(..))
+
 import GHC.Float (float2Double, double2Float)
 
 -- |Number class

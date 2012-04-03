@@ -8,6 +8,8 @@ module KryukovLib.Algorithms.Cauchy.Heun
     (heun)
 where
 
+import Prelude hiding (Num(..))
+
 import KryukovLib.Generic.ListFunctions (diffgrid)
 
 import KryukovLib.Classes.LAO
@@ -24,10 +26,10 @@ heun func nodes base = zipTable nodes values'
     where
         funcvals   = zipWith func nodes values
         funcvals2  = zipWith func nodes values'
-        funcvals'  = funcvals2 <+> (tail funcvals)
+        funcvals'  = funcvals2 + (tail funcvals)
         diffnodes  = diffgrid nodes
         diffnodes' = map (/2) diffnodes
         deltas     = zipWith (\*\) diffnodes  funcvals
         deltas'    = zipWith (\*\) diffnodes' funcvals'
-        values     = base : (values <+> deltas)
-        values'    = base : (values <+> deltas')
+        values     = base : (values + deltas)
+        values'    = base : (values + deltas')
