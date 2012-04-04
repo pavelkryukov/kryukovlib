@@ -14,6 +14,7 @@ import KryukovLib.Generic.ListFunctions (tail2)
 
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Number
+import KryukovLib.Classes.Semigroup
 
 import KryukovLib.Types.Table
 

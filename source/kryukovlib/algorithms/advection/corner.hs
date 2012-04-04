@@ -16,6 +16,7 @@ import KryukovLib.Generic.ListFunctions (diffgrid)
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Number
 import KryukovLib.Classes.CrossMult
+import KryukovLib.Classes.Semigroup
 
 import KryukovLib.Types.Table (Table, unTable, zipTable)
 
@@ -38,8 +39,8 @@ step v0 tau func = zipTable grid' result
             (tail values)                    -- y * (1 - q)
         result = v0 : (u1 + u2)  -- result
        
-lacorner :: (LAO f, Number t, CrossMult t f f) => Advection t f
-lacorner funcX funcT = zipTable tnodes result
+corner :: (LAO f, Number t, CrossMult t f f) => Advection t f
+corner funcX funcT = zipTable tnodes result
     where
         (tnodes, tvalues) = unTable funcT
         taus = diffgrid tnodes

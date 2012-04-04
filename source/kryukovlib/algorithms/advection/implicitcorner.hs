@@ -16,6 +16,7 @@ import KryukovLib.Generic.ListFunctions (diffgrid)
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Number
 import KryukovLib.Classes.CrossMult
+import KryukovLib.Classes.Semigroup
 
 import KryukovLib.Types.Table (Table, unTable, zipTable)
 

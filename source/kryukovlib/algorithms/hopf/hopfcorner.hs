@@ -13,6 +13,8 @@ import Prelude hiding (Num(..))
 import KryukovLib.Generic.ListFunctions
 
 import KryukovLib.Classes.Number
+import KryukovLib.Classes.LAO
+import KryukovLib.Classes.Semigroup
 
 import KryukovLib.Types.Table
 

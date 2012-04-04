@@ -8,6 +8,8 @@ module KryukovLib.Generic.Polynoms
     (legePoly, chebPoly, normedChebPoly, reducedChebPoly)
 where
 
+import KryukovLib.Classes.Number
+
 -- |Legendre polynoms
 legePoly :: (Number t) => Int -> (t -> t)
 legePoly 0 = const 1
