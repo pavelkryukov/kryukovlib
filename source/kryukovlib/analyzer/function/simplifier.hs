@@ -9,9 +9,11 @@ module KryukovLib.Analyzer.Function.Simplifier
     (simplifier)
 where
 
+import KryukovLib.Classes.Number
+
 import KryukovLib.Analyzer.Function
 
-simplifier :: Function -> Function
+simplifier :: (Number t) => Function t -> Function t
 simplifier (Sum (Const a) (Const b)) = Const (a + b)
 simplifier (Sum (Const 0) b) = simplifier b
 simplifier (Mul (Const a) (Const b)) = Const (a * b)

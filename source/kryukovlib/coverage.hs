@@ -169,7 +169,7 @@ splitter = putStrLn "\n---------------------------"
 -- Analytic derivative --
 -------------------------
 
-anfunction :: Function
+anfunction :: Function T
 anfunction = simplifier (Mul (Mul Id Id) Id)
 
 anderiv :: Int -> IO()
