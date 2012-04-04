@@ -14,14 +14,13 @@ import Prelude hiding (Num(..))
 import KryukovLib.Generic.Debug (notImpl)
 
 import KryukovLib.Classes.LAO
-import KryukovLib.Classes.Number
 import KryukovLib.Classes.CrossMult
 
 import KryukovLib.Algorithms.Derivative
 
 -- |Onesided derivative
 deriv :: forall t f. 
-    (CrossMult t f f, Number t, LAO f) =>
+    (NumberMult t f) =>
     Int -> t -> Derivate t f
 deriv n h =
     \func ->

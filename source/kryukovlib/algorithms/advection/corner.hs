@@ -26,7 +26,7 @@ import KryukovLib.Algorithms.Advection (Advection)
       z
     x y
 -}
-step :: (t ~ x, LAO f, Number t, CrossMult t f f) =>
+step :: (t ~ x, NumberMult t f) =>
     f -> t -> Table x f -> Table x f
 step v0 tau func = zipTable grid' result
     where
@@ -39,7 +39,7 @@ step v0 tau func = zipTable grid' result
             (tail values)                    -- y * (1 - q)
         result = v0 : (u1 + u2)  -- result
        
-corner :: (LAO f, Number t, CrossMult t f f) => Advection t f
+corner :: (NumberMult t f) => Advection t f
 corner funcX funcT = zipTable tnodes result
     where
         (tnodes, tvalues) = unTable funcT

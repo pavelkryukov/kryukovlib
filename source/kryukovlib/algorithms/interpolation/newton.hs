@@ -12,7 +12,6 @@ import Prelude hiding (Num(..))
 
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.CrossMult
-import KryukovLib.Classes.Number
 
 import KryukovLib.Types.Table (qual, unTable)
 
@@ -21,7 +20,7 @@ import KryukovLib.Common.FinDiff (finDiff)
 import KryukovLib.Algorithms.Interpolation
 
 -- |Interpolation polynom in Newton's form
-newton :: (CrossMult t f f, Number t, LAO f) => Interpolation t f
+newton :: (NumberMult t f) => Interpolation t f
 newton f =
     \x ->
         laosum $ zipWith (\*\) (map ($ x) poly) (finDiff f)

@@ -15,14 +15,13 @@ import KryukovLib.Generic.Debug (notImpl)
 import KryukovLib.Generic.ListFunctions (merge)
 
 import KryukovLib.Classes.LAO
-import KryukovLib.Classes.Number
 import KryukovLib.Classes.CrossMult
 
 import KryukovLib.Algorithms.Derivative
 
 -- |Symmetric derivative
 derivS :: forall t f. 
-    (CrossMult t f f, Number t, LAO f) =>
+    (NumberMult t f) =>
         Int -> t -> Derivate t f
 derivS n h =
     \func ->

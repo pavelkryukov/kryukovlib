@@ -14,7 +14,7 @@ import qualified Prelude as P
 import KryukovLib.Generic.ListFunctions (hgrid)
 
 import KryukovLib.Classes.LAO
-import KryukovLib.Classes.Number
+import KryukovLib.Classes.CrossMult
 import KryukovLib.Classes.Semigroup
 
 import KryukovLib.Types.Table (trace, inverseT)
@@ -29,7 +29,7 @@ import KryukovLib.Algorithms.MatrixInv
 -- First argument is for integral algorithm,
 -- second for interval, third is number of nodes
 -- and the fourth one is function
-integA  :: (Number t, LAO f) =>
+integA  :: (NumberMult t f) =>
     Integ t f -> (t,t) -> Int -> (t -> f) -> f
 integA integ interval quality function =
     integ (trace (hgrid interval quality) function)
@@ -51,7 +51,7 @@ hderiv d n = (hderiv d (n P.- 1)) . d
 --             interval of inverse
 --             number of points interval
 --             function
-inverseA  :: (Number t, LAO f) =>
+inverseA  :: (NumberMult t f) =>
     Interpolation f t -> (t,t) -> Int -> (t -> f) -> (f -> t)
 inverseA interpolation interval quality function =
     interpolation

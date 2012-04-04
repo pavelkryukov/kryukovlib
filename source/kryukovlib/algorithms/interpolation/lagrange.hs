@@ -11,7 +11,6 @@ where
 import Prelude hiding (Num(..))
 
 import KryukovLib.Classes.LAO
-import KryukovLib.Classes.Number
 import KryukovLib.Classes.CrossMult
 
 import KryukovLib.Types.Table (unTable)
@@ -19,7 +18,7 @@ import KryukovLib.Types.Table (unTable)
 import KryukovLib.Algorithms.Interpolation
 
 -- |Interpolation polynom in Lagrange's form --
-lagrange :: (CrossMult t f f, Number t, LAO f) => Interpolation t f
+lagrange :: (NumberMult t f) => Interpolation t f
 lagrange func =
     \x -> 
         laosum $ zipWith (\*\) (map ($ x) base) values
