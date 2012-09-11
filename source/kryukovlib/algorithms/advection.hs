@@ -12,5 +12,5 @@ import Prelude hiding (Num(..))
 
 import KryukovLib.Types.Table (Table)
 
--- |LAdvection solves equation du/dt + du/dx = 0
+-- |Advection solves equation du/dt + du/dx = 0
 type Advection t f = Table t f -> Table t f -> Table t (Table t f)

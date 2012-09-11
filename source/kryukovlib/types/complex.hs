@@ -67,10 +67,10 @@ instance (Number t, Semigroup t, Floating t) => Floating (Complex t) where
     asinh z = log (z + sqrt (z * z + iden))
     acosh z = log (z + sqrt (z + iden) * sqrt (z - iden))
     atanh z = (log ((iden + z) / (iden - z))) / two
-
+    
 instance (Show t) => Show (Complex t) where
     show (Complex x y) = "{" ++ (show x) ++ " + i" ++ (show y) ++ "}"
-
+   
 instance (LAO t) => LAO (Complex t) where
     zero = Complex zero zero
     norm1 = sqrt . euclid

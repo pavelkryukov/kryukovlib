@@ -62,7 +62,7 @@ import KryukovLib.Analyzer.Function.Simplifier
 
 import KryukovLib.Solutions
 
-type T = DoubleD
+type T = Complex DoubleD
 type OMG = SqrMatrix Two (Complex (SqrMatrix Two (Quaternion T)))
 
 ---------
