@@ -85,8 +85,8 @@ instance (LAO t) => LAO (Vector One t) where
     norm1 = maximum . (mapV norm1)
     norm2 =  sum . (mapV norm2)
     euclid = sum . mapV euclid
-    (Vector a) + (Vector b) = Vector $ a + b
-    (Vector a) - (Vector b) = Vector $ a - b
+    (Vector a) + (Vector b) = Vector $ zipWith (+) a b
+    (Vector a) - (Vector b) = Vector $ zipWith (-) a b
 
 instance forall t s.
         (Peano s, LAO (Vector s t), LAO t) => LAO (Vector (Succ s) t) where
@@ -94,5 +94,5 @@ instance forall t s.
     norm1 = maximum . (mapV norm1)
     norm2 =  sum . (mapV norm2)
     euclid = sum . mapV euclid
-    (Vector a) + (Vector b) = Vector $ a + b
-    (Vector a) - (Vector b) = Vector $ a - b
+    (Vector a) + (Vector b) = Vector $ zipWith (+) a b
+    (Vector a) - (Vector b) = Vector $ zipWith (-) a b

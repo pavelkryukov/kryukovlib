@@ -33,7 +33,7 @@ step v0 tau func = zipTable grid' result
         (grid', values) = unTable func
         th      = map (* tau) (diffgrid grid')        -- q = t / h
         u1      = zipWith (\*\) th result             -- y * q
-        u21     = u1 + (tail values)                -- y * q + x
+        u21     = zipWith (+) u1 (tail values)      -- y * q + x
         uall    = zipWith 
                     (\b -> ((recip (1 + b)) \*\)) 
                     th

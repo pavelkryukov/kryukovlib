@@ -23,7 +23,7 @@ class (LAO a) => Semigroup a where
     (*) :: a -> a -> a
     -- Fibonacci range
     fibonacci :: [a]
-    fibonacci = zero : iden : fibonacci + (tail fibonacci)
+    fibonacci = zero : iden : zipWith (+) fibonacci (tail fibonacci)
     -- Kroneker symbol
     kroneker :: (Eq t) => t -> t -> a
     kroneker m n

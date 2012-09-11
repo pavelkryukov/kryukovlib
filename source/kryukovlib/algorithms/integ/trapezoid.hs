@@ -27,6 +27,6 @@ trapezoid f =
     let
         (nodes, values') = unTable f
         diffnodes = diffgrid nodes
-        values  = (tail values') + values'
+        values  = zipWith (+) (tail values') values'
     in
         (0.5::t) \*\ ((laosum::[f]->f) (zipWith (\*\) diffnodes values))

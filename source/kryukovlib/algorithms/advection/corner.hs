@@ -37,7 +37,7 @@ step v0 tau func = zipTable grid' result
             (\a -> \b -> (1 - a) \*\ b)
             th 
             (tail values)                    -- y * (1 - q)
-        result = v0 : (u1 + u2)  -- result
+        result = v0 : (zipWith (+) u1 u2)  -- result
        
 corner :: (NumberMult t f) => Advection t f
 corner funcX funcT = zipTable tnodes result
