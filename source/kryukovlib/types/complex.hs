@@ -83,4 +83,3 @@ instance (Semigroup t) => Semigroup (Complex t) where
     iden = Complex iden zero
     Complex a1 b1 * Complex a2 b2 =
         Complex ((a1 * a2) - (b1 * b2)) ((a1 * b2) + (a2 * b1))
-    

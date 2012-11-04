@@ -1,5 +1,5 @@
 @echo off
-del bin /f
-del obj /f
-del hi /f
-del haddock /f
+del bin
+del obj
+del hi
+del haddock
