@@ -9,7 +9,7 @@ module KryukovLib.Classes.CrossMult
     (CrossMult(..), NumberMult)
 where
 
-import Prelude hiding (Num(..))
+import Prelude hiding (Num(..), Semigroup)
 
 import KryukovLib.Classes.LAO
 import KryukovLib.Classes.Number

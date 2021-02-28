@@ -9,7 +9,7 @@ module KryukovLib.Algorithms.SLAE.Jacobi
     (jacobi)
 where
 
-import Prelude hiding (Num(..))
+import Prelude hiding (Num(..), Semigroup)
 
 import KryukovLib.Generic.Peano
 

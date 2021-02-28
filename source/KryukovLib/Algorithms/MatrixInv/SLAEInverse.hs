@@ -9,7 +9,7 @@ module KryukovLib.Algorithms.MatrixInv.SLAEInverse
     (slaeInverse)
 where
 
-import Prelude hiding (Num(..))
+import Prelude hiding (Num(..), Semigroup)
 
 import Data.Maybe
 

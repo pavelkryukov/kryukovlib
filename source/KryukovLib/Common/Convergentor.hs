@@ -9,7 +9,7 @@ module KryukovLib.Common.Convergentor
     (convergentor, matrixiterator)
 where
 
-import Prelude hiding (Num(..))
+import Prelude hiding (Num(..), Semigroup)
 import qualified Prelude as P
 
 import KryukovLib.Classes.LAO

@@ -9,7 +9,7 @@ module KryukovLib.Algorithms.SLAE.Seidel
     (seidel)
 where
 
-import Prelude hiding (Num(..))
+import Prelude hiding (Num(..), Semigroup)
 
 import Data.Maybe (fromJust)
 

@@ -16,7 +16,7 @@ module KryukovLib.Types.Vector
     (Vector(..), mapV, mapVV, basis, definedBasis, vtl)
 where
 
-import Prelude hiding (Num(..))
+import Prelude hiding (Num(..), Semigroup)
 import qualified Prelude as P
 
 import KryukovLib.Generic.Peano

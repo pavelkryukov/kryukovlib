@@ -9,7 +9,7 @@ module KryukovLib.Algorithms.SLAE.Parameter
     (parameter)
 where
 
-import Prelude hiding (Num(..))
+import Prelude hiding (Num(..), Semigroup)
 
 import KryukovLib.Generic.Peano
 

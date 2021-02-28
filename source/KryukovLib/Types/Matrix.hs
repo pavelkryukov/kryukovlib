@@ -18,7 +18,7 @@ module KryukovLib.Types.Matrix
     takeDiag, diag, trans)
 where
 
-import Prelude hiding (Num(..))
+import Prelude hiding (Num(..), Semigroup)
 import qualified Prelude as P
 
 import Data.List (transpose)
