@@ -4,7 +4,7 @@
  - Kryukov computational mathematics library (KryukovLib)
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
-{-# LANGUAGE ScopedTypeVariables #-}
+{-# LANGUAGE ScopedTypeVariables, MonoLocalBinds #-}
 module KryukovLib.Algorithms.Integ.Simpson
     (simpson)
 where

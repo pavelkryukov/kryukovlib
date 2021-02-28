@@ -4,7 +4,7 @@
  - Kryukov computational mathematics library (KryukovLib)
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
-{-# LANGUAGE IncoherentInstances #-}
+{-# LANGUAGE IncoherentInstances, MonoLocalBinds #-}
 module KryukovLib.Types.Complex
     (Complex(), i, arg, Quaternion, Octonion)
 where

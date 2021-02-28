@@ -4,6 +4,7 @@
  - Kryukov computational mathematics library (KryukovLib)
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
+{-# LANGUAGE MonoLocalBinds #-}
 module KryukovLib.Generic.ListFunctions
     (merge, hgrid, chebPolyZeroes, tail2,
      evenl, oddl, diffgrid, shift, midgrid, superzip)

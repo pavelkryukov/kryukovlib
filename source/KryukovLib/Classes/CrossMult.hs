@@ -4,7 +4,7 @@
  - Kryukov computational mathematics library (KryukovLib)
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
-{-# LANGUAGE FlexibleInstances, UndecidableInstances, MultiParamTypeClasses #-}
+{-# LANGUAGE FlexibleInstances, UndecidableInstances, MultiParamTypeClasses, MonoLocalBinds #-}
 module KryukovLib.Classes.CrossMult
     (CrossMult(..), NumberMult)
 where

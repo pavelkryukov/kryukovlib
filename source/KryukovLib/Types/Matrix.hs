@@ -11,6 +11,7 @@
     ExistentialQuantification,
     MultiParamTypeClasses,
     FlexibleContexts,
+    MonoLocalBinds,
     IncoherentInstances #-}
 module KryukovLib.Types.Matrix
     (Matrix(..), SqrMatrix, SLAE(..), lmatrix, umatrix,

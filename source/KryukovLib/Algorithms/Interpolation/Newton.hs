@@ -4,6 +4,7 @@
  - Kryukov computational mathematics library (KryukovLib)
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
+{-# LANGUAGE MonoLocalBinds #-}
 module KryukovLib.Algorithms.Interpolation.Newton
     (newton)
 where

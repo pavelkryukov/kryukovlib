@@ -10,6 +10,7 @@
     ExistentialQuantification,
     MultiParamTypeClasses,
     FlexibleContexts,
+    MonoLocalBinds,
     IncoherentInstances #-}
 module KryukovLib.Types.Vector
     (Vector(..), mapV, mapVV, basis, definedBasis, vtl)
