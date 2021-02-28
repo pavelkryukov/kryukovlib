@@ -20,7 +20,7 @@ import KryukovLib.Classes.Semigroup
 -- E. g. mulitplication Matrix to Vector and return Vector
 class CrossMult a b c where
     -- Cross Multiplication operator
-	(\*\) :: a -> b -> c
+    (\*\) :: a -> b -> c
 
 instance (Semigroup a, Number a) => CrossMult a a a where
     (\*\) = (*)
