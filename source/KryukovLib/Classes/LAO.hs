@@ -4,7 +4,7 @@
  - Kryukov computational mathematics library (KryukovLib)
  - Copyright (C) Pavel Kryukov, 2011-2012
 -}
-{-# LANGUAGE FlexibleInstances, UndecidableInstances, OverlappingInstances #-}
+{-# LANGUAGE FlexibleInstances, UndecidableInstances #-}
 module KryukovLib.Classes.LAO
     (LAO(..), Norm)
 where
